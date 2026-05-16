@@ -1,0 +1,5 @@
+Xth Duration:- 2011-2011
+Passing Year :- 2012
+Subjects :- Maths, Physics, Chemistry, IP ( Infomration Practices - Java ) , English
+Percentage :- 80.02%
+Marksheet And Documents is in Doc folder
