@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "swoo-analytics-bq",
+  "private_key_id": "7ef282b1d58bd0421a4139cbc6a3bc3e96191ad0",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCdM5kMWcl+7ows\nnPuhEzpxUhb3BpK6RVdfwNYxd5ksmD4rZYzNSfNCb25BtwLaC8m8ySl37ZQPwi/O\nxWuTHFNKQEbyCo4QePV8CfI0kyyPHvNF9v//MnkzGYR/FzNBVvcAakqiIHc/fNQX\n2ZeCgLhOIr4ZlDlIfVGrfoVGLdH0MqP2KPHS2W1yp9/x5DtXZ5bxCy+ksF47iqd4\n0BWSPQeei/SJPWVFLUUhbqMm7md9x7+HSV8p3Ml37lsvsbqoF+JjvIZEzM6gChSp\nZJKsLrxkn+HM6lS9zRDv9xHn8NiJHe2/F8l3fqFryX/D9BU6DmTGJyL+v0qxpE0T\nowugeqC9AgMBAAECggEAH1F2xcujhYq/2WmDBhGfHJF2qssf80U6RYTVB3Dkzsob\n5KhsF0AK2yr5A9WSl18u11IaVV67FzKgNKkHJ/1GKK5KlBD/QY/flFEk9E133KGV\nZNRzJuPm2oPUbj9wgi1xsx759HfUWg0j8gZzFVhQn5xzVARAL01sNmbT5WnegLBA\nF1TPovm4tWsjhhYina3Hp8TQYN3p8/S2WObOHkAWa+KUJgz0pLUZ3OHRrk2QCLm+\nkMbCC2TH7Oiwc1+XkDn/7dOR3gRGHDHxBvfEdOj7kdVUIjvWl0w8W9mhaz1N3qZp\nVLLd2vUbTLiTu3YVLAIyzKVPZs7tANxaGezZ5jjPbwKBgQDP4Ri1FTquMsfMHcEw\nroAepdxYDws5hUrexQM/J0HXzpVyhMN0s/BDys5sf0L9hUzw/FvYkwKJ+ODnnjek\nhcu/WqhsOb+3noLzvWEW3e6g46c8L+6wUVVz5uMPksTn3exGfz8atq1EYNlq+ctI\nvFlK10V2NOASYkNjJPmxTInYdwKBgQDBl1g8MiXYm8lanZs/rlZe8NWHaFjTioWo\nYLjO/FgZ9fYiermDDHlQtU4O/Md5knzrLa4SJkqotssTCpRK5nSQSiKHXF5oZUcl\nc/QfeO5suFB1O0MD+egJlCHCGjfygz+xPzIM+oCs21WPAn6CMq71T2UyynkttPI2\ngJkaHPzRawKBgGHM5CPlvfrQt0EnyolNv8crf1QKl9xTApt2EwX2QTr33UXIgnB4\na5RpaN6QrQK7YSyLfeaRm4MwDRfLTyBfNjFrxItOTA1mTPPBaFkqxqb5E+f0IRbg\n3RQvTyo3gd4YgZ3VJeo6gaAG9KMorGQnANd+Ghb332emxU9yyOqKONwXAoGAfJiv\nzW5pNVRu78doWEAYjtpqU9Aw+1W4WHqH95AqE+teEyrxowqwOeW266Z9rB1AEQ1B\nb6T9gEDFyueQMfTJKOTN/FjS2lX0yIIsqOTob0jhX9JYe4KoeSHB6G9/erJGmAmY\naQoBLz+rfXOZgKqmOHR1KY9vFp/TFIkIAOqPPSkCgYEAjMGzT41kbfR+1O6ldaK9\nMEkZGknB4odoUQQQMD4a1a9s4hwOKIBYmPen+oQXZo/XN7j7uZa42aUKeK8sJIL/\nrPMY/ASjARUrL7px8TRbBiUkVHyRb2rXkYevH4cvkrtHqa/HQ9qgu6yV/bF/74v1\nm7RgAwAZWZ4c+sDCGc+cj/w=\n-----END PRIVATE KEY-----\n",
+  "client_email": "analytics-data-api@swoo-analytics-bq.iam.gserviceaccount.com",
+  "client_id": "112449437861687137788",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/analytics-data-api%40swoo-analytics-bq.iam.gserviceaccount.com"
+}
