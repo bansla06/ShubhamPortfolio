@@ -1,0 +1,351 @@
+{
+  "meta": {
+    "project": "AOV Deep Dive V2",
+    "source": "tira-prod.derived_table.TransactionalData",
+    "period": "2024-01-01 to 2026-03-31",
+    "refreshed": "May 2026",
+    "author": "Shubham"
+  },
+
+  "qoq_growth": [
+    { "quarter": "2024 Q1", "total_orders": 398856,  "total_users": 287668, "new_users": 287668, "repeat_users": 65893,  "repeat_pct": 22.9, "revenue_crore": 68.65,  "avg_aov": 1721, "avg_asp": 952,  "avg_basket_size": 2.49 },
+    { "quarter": "2024 Q2", "total_orders": 528353,  "total_users": 372443, "new_users": 305554, "repeat_users": 131602, "repeat_pct": 35.3, "revenue_crore": 89.56,  "avg_aov": 1695, "avg_asp": 942,  "avg_basket_size": 2.42 },
+    { "quarter": "2024 Q3", "total_orders": 642723,  "total_users": 447154, "new_users": 330178, "repeat_users": 180865, "repeat_pct": 40.4, "revenue_crore": 110.64, "avg_aov": 1721, "avg_asp": 990,  "avg_basket_size": 2.31 },
+    { "quarter": "2024 Q4", "total_orders": 716352,  "total_users": 503507, "new_users": 339496, "repeat_users": 224158, "repeat_pct": 44.5, "revenue_crore": 128.60, "avg_aov": 1795, "avg_asp": 1002, "avg_basket_size": 2.37 },
+    { "quarter": "2025 Q1", "total_orders": 816200,  "total_users": 557637, "new_users": 344631, "repeat_users": 274665, "repeat_pct": 49.3, "revenue_crore": 145.70, "avg_aov": 1785, "avg_asp": 951,  "avg_basket_size": 2.44 },
+    { "quarter": "2025 Q2", "total_orders": 794105,  "total_users": 530524, "new_users": 286426, "repeat_users": 293737, "repeat_pct": 55.4, "revenue_crore": 148.90, "avg_aov": 1875, "avg_asp": 954,  "avg_basket_size": 2.59 },
+    { "quarter": "2025 Q3", "total_orders": 1037201, "total_users": 655711, "new_users": 358746, "repeat_users": 363652, "repeat_pct": 55.5, "revenue_crore": 215.85, "avg_aov": 2081, "avg_asp": 1006, "avg_basket_size": 2.72 },
+    { "quarter": "2025 Q4", "total_orders": 988230,  "total_users": 641874, "new_users": 313523, "repeat_users": 383713, "repeat_pct": 59.8, "revenue_crore": 199.83, "avg_aov": 2022, "avg_asp": 1023, "avg_basket_size": 2.67 },
+    { "quarter": "2026 Q1", "total_orders": 1191902, "total_users": 718792, "new_users": 335471, "repeat_users": 451835, "repeat_pct": 62.9, "revenue_crore": 240.34, "avg_aov": 2016, "avg_asp": 1001, "avg_basket_size": 2.80 }
+  ],
+
+  "tension_user_quality": {
+    "total_users": 2901694,
+    "one_time_buyers": 1697231,
+    "one_time_pct": 58.5,
+    "sale_only_users": 1677397,
+    "sale_only_pct": 57.8,
+    "sub_1000_aov_users": 974005,
+    "sub_1000_aov_pct": 33.6,
+    "sub_500_asp_users": 921716,
+    "sub_500_asp_pct": 31.8
+  },
+
+  "first_order_aov_distribution": [
+    { "aov_band": "<500",      "users": 198008,  "pct_of_users": 6.8,  "avg_asp": 329,  "avg_items": 1.30 },
+    { "aov_band": "500-999",   "users": 869478,  "pct_of_users": 30.0, "avg_asp": 543,  "avg_items": 1.66 },
+    { "aov_band": "1000-1999", "users": 1107358, "pct_of_users": 38.2, "avg_asp": 817,  "avg_items": 2.44 },
+    { "aov_band": "2000-2999", "users": 404595,  "pct_of_users": 13.9, "avg_asp": 1230, "avg_items": 3.13 },
+    { "aov_band": "3000-4999", "users": 233490,  "pct_of_users": 8.0,  "avg_asp": 1733, "avg_items": 3.73 },
+    { "aov_band": "5000+",     "users": 88765,   "pct_of_users": 3.1,  "avg_asp": 3913, "avg_items": 4.53 }
+  ],
+
+  "platform_baseline": {
+    "total_users": 2901693,
+    "total_orders": 7113922,
+    "total_revenue_crore": 1348.1,
+    "platform_avg_aov": 1895,
+    "platform_avg_asp": 986,
+    "repeat_user_pct": 41.5
+  },
+
+  "finding_1_aov_maturity": [
+    { "order_rank_bucket": "1",     "avg_aov": 1667, "avg_asp": 928,  "avg_brands": 1.84, "avg_items": 2.39, "user_count": 2901693, "order_count": 2901694 },
+    { "order_rank_bucket": "2",     "avg_aov": 1798, "avg_asp": 952,  "avg_brands": 1.92, "avg_items": 2.49, "user_count": 1204462, "order_count": 1204463 },
+    { "order_rank_bucket": "3",     "avg_aov": 1912, "avg_asp": 982,  "avg_brands": 1.98, "avg_items": 2.57, "user_count": 695026,  "order_count": 695026  },
+    { "order_rank_bucket": "4",     "avg_aov": 1999, "avg_asp": 1004, "avg_brands": 2.01, "avg_items": 2.64, "user_count": 460815,  "order_count": 460815  },
+    { "order_rank_bucket": "5",     "avg_aov": 2067, "avg_asp": 1025, "avg_brands": 2.03, "avg_items": 2.67, "user_count": 329991,  "order_count": 329991  },
+    { "order_rank_bucket": "6",     "avg_aov": 2120, "avg_asp": 1038, "avg_brands": 2.06, "avg_items": 2.71, "user_count": 247508,  "order_count": 247508  },
+    { "order_rank_bucket": "7",     "avg_aov": 2173, "avg_asp": 1058, "avg_brands": 2.07, "avg_items": 2.73, "user_count": 191711,  "order_count": 191711  },
+    { "order_rank_bucket": "8",     "avg_aov": 2220, "avg_asp": 1073, "avg_brands": 2.07, "avg_items": 2.75, "user_count": 151957,  "order_count": 151957  },
+    { "order_rank_bucket": "9",     "avg_aov": 2259, "avg_asp": 1087, "avg_brands": 2.07, "avg_items": 2.78, "user_count": 122844,  "order_count": 122844  },
+    { "order_rank_bucket": "10",    "avg_aov": 2295, "avg_asp": 1102, "avg_brands": 2.07, "avg_items": 2.79, "user_count": 100808,  "order_count": 100808  },
+    { "order_rank_bucket": "11-15", "avg_aov": 2382, "avg_asp": 1141, "avg_brands": 2.05, "avg_items": 2.83, "user_count": 83298,   "order_count": 305110  },
+    { "order_rank_bucket": "16-20", "avg_aov": 2513, "avg_asp": 1205, "avg_brands": 1.99, "avg_items": 2.92, "user_count": 37117,   "order_count": 143544  },
+    { "order_rank_bucket": "21-25", "avg_aov": 2589, "avg_asp": 1226, "avg_brands": 1.94, "avg_items": 3.05, "user_count": 19141,   "order_count": 76813   },
+    { "order_rank_bucket": "26-30", "avg_aov": 2651, "avg_asp": 1247, "avg_brands": 1.88, "avg_items": 3.23, "user_count": 10876,   "order_count": 44935   },
+    { "order_rank_bucket": "30+",   "avg_aov": 2573, "avg_asp": 1108, "avg_brands": 1.71, "avg_items": 4.21, "user_count": 6698,    "order_count": 136736  }
+  ],
+
+  "finding_2_aov_retention": [
+    { "first_order_aov_band": "<500",       "new_users": 198021,  "ret_to_2nd_30d_pct": 9.7,  "ret_to_2nd_pct": 27.2, "ret_to_3rd_pct": 12.7, "ret_to_5th_pct": 4.8,  "ret_to_10th_pct": 1.2 },
+    { "first_order_aov_band": "500-999",    "new_users": 869210,  "ret_to_2nd_30d_pct": 13.4, "ret_to_2nd_pct": 34.5, "ret_to_3rd_pct": 17.9, "ret_to_5th_pct": 7.6,  "ret_to_10th_pct": 2.1 },
+    { "first_order_aov_band": "1000-1999",  "new_users": 1107654, "ret_to_2nd_30d_pct": 17.6, "ret_to_2nd_pct": 43.7, "ret_to_3rd_pct": 25.6, "ret_to_5th_pct": 12.2, "ret_to_10th_pct": 3.7 },
+    { "first_order_aov_band": "2000-2999",  "new_users": 404591,  "ret_to_2nd_30d_pct": 21.5, "ret_to_2nd_pct": 49.6, "ret_to_3rd_pct": 31.1, "ret_to_5th_pct": 16.1, "ret_to_10th_pct": 5.4 },
+    { "first_order_aov_band": "3000-4999",  "new_users": 233469,  "ret_to_2nd_30d_pct": 23.9, "ret_to_2nd_pct": 51.9, "ret_to_3rd_pct": 32.9, "ret_to_5th_pct": 17.2, "ret_to_10th_pct": 5.8 },
+    { "first_order_aov_band": "5000+",      "new_users": 88748,   "ret_to_2nd_30d_pct": 21.6, "ret_to_2nd_pct": 50.6, "ret_to_3rd_pct": 31.5, "ret_to_5th_pct": 15.9, "ret_to_10th_pct": 5.1 }
+  ],
+
+  "finding_3a_event_retention": [
+    { "first_order_event": "VIP Day - TTO", "new_users": 5003,   "avg_first_aov": 1757, "ret_to_2nd_30d_pct": 23.2, "ret_to_2nd_pct": 60.2, "ret_to_5th_pct": 25.8 },
+    { "first_order_event": "Match Day",     "new_users": 18372,  "avg_first_aov": 1498, "ret_to_2nd_30d_pct": 21.1, "ret_to_2nd_pct": 54.3, "ret_to_5th_pct": 18.2 },
+    { "first_order_event": "Cat day",       "new_users": 126083, "avg_first_aov": 1542, "ret_to_2nd_30d_pct": 17.3, "ret_to_2nd_pct": 50.7, "ret_to_5th_pct": 17.1 },
+    { "first_order_event": "Festive Coupon","new_users": 48220,  "avg_first_aov": 1558, "ret_to_2nd_30d_pct": 16.1, "ret_to_2nd_pct": 45.4, "ret_to_5th_pct": 12.5 },
+    { "first_order_event": "TT",            "new_users": 200585, "avg_first_aov": 1655, "ret_to_2nd_30d_pct": 17.3, "ret_to_2nd_pct": 44.0, "ret_to_5th_pct": 13.0 },
+    { "first_order_event": "Wedding Coupon","new_users": 49068,  "avg_first_aov": 1627, "ret_to_2nd_30d_pct": 15.7, "ret_to_2nd_pct": 43.8, "ret_to_5th_pct": 11.8 },
+    { "first_order_event": "P0 Sale",       "new_users": 675066, "avg_first_aov": 1703, "ret_to_2nd_30d_pct": 17.5, "ret_to_2nd_pct": 42.0, "ret_to_5th_pct": 11.3 },
+    { "first_order_event": "BAU",           "new_users": 808507, "avg_first_aov": 1666, "ret_to_2nd_30d_pct": 16.8, "ret_to_2nd_pct": 40.5, "ret_to_5th_pct": 11.0 },
+    { "first_order_event": "P1 sale",       "new_users": 778930, "avg_first_aov": 1673, "ret_to_2nd_30d_pct": 16.2, "ret_to_2nd_pct": 40.1, "ret_to_5th_pct": 10.7 },
+    { "first_order_event": "PreBuzz",       "new_users": 143327, "avg_first_aov": 1613, "ret_to_2nd_30d_pct": 19.2, "ret_to_2nd_pct": 40.0, "ret_to_5th_pct": 9.9  },
+    { "first_order_event": "1 day sale",    "new_users": 48532,  "avg_first_aov": 1841, "ret_to_2nd_30d_pct": 15.8, "ret_to_2nd_pct": 32.8, "ret_to_5th_pct": 6.3  }
+  ],
+
+  "finding_4_sale_dependency": [
+    { "buyer_type": "Sale Only",      "users": 1677396, "pct_of_users": 57.8, "avg_total_orders": 1.5, "avg_bau_orders": 0.0, "avg_sale_orders": 1.5 },
+    { "buyer_type": "Both BAU & Sale","users": 676873,  "pct_of_users": 23.3, "avg_total_orders": 5.8, "avg_bau_orders": 2.0, "avg_sale_orders": 3.9 },
+    { "buyer_type": "BAU Only",       "users": 547424,  "pct_of_users": 18.9, "avg_total_orders": 1.2, "avg_bau_orders": 1.2, "avg_sale_orders": 0.0 }
+  ],
+
+  "finding_5_brand_retention_top": [
+    { "brand_name": "Aminu",                  "new_users": 584,   "ret_to_2nd_30d_pct": 28.3, "ret_to_2nd_pct": 70.5, "ret_to_5th_pct": 34.4, "avg_first_asp": 1441 },
+    { "brand_name": "theBalm Cosmetics",      "new_users": 501,   "ret_to_2nd_30d_pct": 30.3, "ret_to_2nd_pct": 68.1, "ret_to_5th_pct": 28.7, "avg_first_asp": 768  },
+    { "brand_name": "Thank You Farmer",       "new_users": 2505,  "ret_to_2nd_30d_pct": 27.7, "ret_to_2nd_pct": 67.9, "ret_to_5th_pct": 33.9, "avg_first_asp": 1352 },
+    { "brand_name": "First Aid Beauty",       "new_users": 1391,  "ret_to_2nd_30d_pct": 21.7, "ret_to_2nd_pct": 66.7, "ret_to_5th_pct": 33.8, "avg_first_asp": 1673 },
+    { "brand_name": "Shiseido",               "new_users": 1901,  "ret_to_2nd_30d_pct": 26.7, "ret_to_2nd_pct": 64.9, "ret_to_5th_pct": 30.6, "avg_first_asp": 2856 },
+    { "brand_name": "INGLOT",                 "new_users": 733,   "ret_to_2nd_30d_pct": 25.2, "ret_to_2nd_pct": 63.7, "ret_to_5th_pct": 25.1, "avg_first_asp": 1380 },
+    { "brand_name": "d'you",                  "new_users": 5726,  "ret_to_2nd_30d_pct": 21.5, "ret_to_2nd_pct": 63.1, "ret_to_5th_pct": 27.5, "avg_first_asp": 2109 },
+    { "brand_name": "Sulwhasoo",              "new_users": 880,   "ret_to_2nd_30d_pct": 27.4, "ret_to_2nd_pct": 62.8, "ret_to_5th_pct": 28.2, "avg_first_asp": 2488 },
+    { "brand_name": "Caudalie",               "new_users": 4899,  "ret_to_2nd_30d_pct": 25.5, "ret_to_2nd_pct": 62.6, "ret_to_5th_pct": 27.9, "avg_first_asp": 2157 },
+    { "brand_name": "Biore",                  "new_users": 2572,  "ret_to_2nd_30d_pct": 20.2, "ret_to_2nd_pct": 61.9, "ret_to_5th_pct": 25.2, "avg_first_asp": 777  },
+    { "brand_name": "Laura Mercier",          "new_users": 7977,  "ret_to_2nd_30d_pct": 27.5, "ret_to_2nd_pct": 61.7, "ret_to_5th_pct": 26.4, "avg_first_asp": 2207 },
+    { "brand_name": "Farmacy Beauty",         "new_users": 644,   "ret_to_2nd_30d_pct": 23.1, "ret_to_2nd_pct": 61.2, "ret_to_5th_pct": 29.8, "avg_first_asp": 2354 },
+    { "brand_name": "Blessed Moon",           "new_users": 830,   "ret_to_2nd_30d_pct": 22.5, "ret_to_2nd_pct": 61.1, "ret_to_5th_pct": 26.9, "avg_first_asp": 524  },
+    { "brand_name": "Dermalogica",            "new_users": 1267,  "ret_to_2nd_30d_pct": 24.9, "ret_to_2nd_pct": 60.1, "ret_to_5th_pct": 26.5, "avg_first_asp": 2213 },
+    { "brand_name": "Klairs",                 "new_users": 7082,  "ret_to_2nd_30d_pct": 23.1, "ret_to_2nd_pct": 59.8, "ret_to_5th_pct": 26.1, "avg_first_asp": 931  },
+    { "brand_name": "L'occitane",             "new_users": 7634,  "ret_to_2nd_30d_pct": 24.8, "ret_to_2nd_pct": 59.6, "ret_to_5th_pct": 25.4, "avg_first_asp": 1751 },
+    { "brand_name": "Mermade Hair",           "new_users": 835,   "ret_to_2nd_30d_pct": 19.3, "ret_to_2nd_pct": 59.3, "ret_to_5th_pct": 23.2, "avg_first_asp": 2948 },
+    { "brand_name": "Anastasia Beverly Hills","new_users": 7929,  "ret_to_2nd_30d_pct": 26.2, "ret_to_2nd_pct": 59.2, "ret_to_5th_pct": 24.6, "avg_first_asp": 1700 },
+    { "brand_name": "Belif",                  "new_users": 766,   "ret_to_2nd_30d_pct": 21.9, "ret_to_2nd_pct": 58.7, "ret_to_5th_pct": 25.5, "avg_first_asp": 1337 },
+    { "brand_name": "ONE THING",              "new_users": 1591,  "ret_to_2nd_30d_pct": 19.4, "ret_to_2nd_pct": 58.5, "ret_to_5th_pct": 20.8, "avg_first_asp": 740  },
+    { "brand_name": "Olaplex",                "new_users": 14863, "ret_to_2nd_30d_pct": 23.9, "ret_to_2nd_pct": 58.5, "ret_to_5th_pct": 23.3, "avg_first_asp": 2410 },
+    { "brand_name": "Mixsoon",                "new_users": 3477,  "ret_to_2nd_30d_pct": 28.4, "ret_to_2nd_pct": 57.9, "ret_to_5th_pct": 21.5, "avg_first_asp": 1431 },
+    { "brand_name": "K18",                    "new_users": 8665,  "ret_to_2nd_30d_pct": 18.4, "ret_to_2nd_pct": 57.7, "ret_to_5th_pct": 21.5, "avg_first_asp": 2134 },
+    { "brand_name": "Too Faced",              "new_users": 13480, "ret_to_2nd_30d_pct": 24.6, "ret_to_2nd_pct": 57.6, "ret_to_5th_pct": 21.9, "avg_first_asp": 1654 },
+    { "brand_name": "Milk Shake",             "new_users": 8439,  "ret_to_2nd_30d_pct": 19.1, "ret_to_2nd_pct": 57.3, "ret_to_5th_pct": 22.9, "avg_first_asp": 1259 }
+  ],
+
+  "finding_5_brand_retention_bottom": [
+    { "brand_name": "Bombay Shaving Company", "new_users": 5803,  "ret_to_2nd_30d_pct": 8.2,  "ret_to_2nd_pct": 15.3, "ret_to_5th_pct": 1.4, "avg_first_asp": 923  },
+    { "brand_name": "AGARO",                  "new_users": 6470,  "ret_to_2nd_30d_pct": 12.3, "ret_to_2nd_pct": 16.0, "ret_to_5th_pct": 0.7, "avg_first_asp": 1210 },
+    { "brand_name": "KRYOLAN",                "new_users": 597,   "ret_to_2nd_30d_pct": 16.8, "ret_to_2nd_pct": 16.8, "ret_to_5th_pct": 0.8, "avg_first_asp": 969  },
+    { "brand_name": "Ktein",                  "new_users": 3244,  "ret_to_2nd_30d_pct": 10.6, "ret_to_2nd_pct": 18.1, "ret_to_5th_pct": 1.6, "avg_first_asp": 966  },
+    { "brand_name": "Beardo",                 "new_users": 28725, "ret_to_2nd_30d_pct": 10.3, "ret_to_2nd_pct": 19.0, "ret_to_5th_pct": 1.9, "avg_first_asp": 764  },
+    { "brand_name": "Zlade",                  "new_users": 2598,  "ret_to_2nd_30d_pct": 9.0,  "ret_to_2nd_pct": 19.5, "ret_to_5th_pct": 2.2, "avg_first_asp": 1112 },
+    { "brand_name": "Dr.Althea",              "new_users": 2445,  "ret_to_2nd_30d_pct": 18.3, "ret_to_2nd_pct": 20.3, "ret_to_5th_pct": 1.0, "avg_first_asp": 1502 },
+    { "brand_name": "Urban Yog",              "new_users": 3873,  "ret_to_2nd_30d_pct": 13.2, "ret_to_2nd_pct": 20.9, "ret_to_5th_pct": 1.7, "avg_first_asp": 1913 },
+    { "brand_name": "medicube",               "new_users": 566,   "ret_to_2nd_30d_pct": 21.0, "ret_to_2nd_pct": 21.0, "ret_to_5th_pct": 1.8, "avg_first_asp": 1657 },
+    { "brand_name": "essence",                "new_users": 1340,  "ret_to_2nd_30d_pct": 12.8, "ret_to_2nd_pct": 21.6, "ret_to_5th_pct": 1.7, "avg_first_asp": 361  },
+    { "brand_name": "Layer'r",                "new_users": 1917,  "ret_to_2nd_30d_pct": 6.2,  "ret_to_2nd_pct": 21.7, "ret_to_5th_pct": 3.6, "avg_first_asp": 262  },
+    { "brand_name": "LetsShave",              "new_users": 969,   "ret_to_2nd_30d_pct": 8.4,  "ret_to_2nd_pct": 22.2, "ret_to_5th_pct": 3.5, "avg_first_asp": 1304 },
+    { "brand_name": "Wild Stone",             "new_users": 2388,  "ret_to_2nd_30d_pct": 10.5, "ret_to_2nd_pct": 22.3, "ret_to_5th_pct": 2.5, "avg_first_asp": 418  },
+    { "brand_name": "urban gabru",            "new_users": 747,   "ret_to_2nd_30d_pct": 10.2, "ret_to_2nd_pct": 22.8, "ret_to_5th_pct": 3.2, "avg_first_asp": 463  }
+  ],
+
+  "finding_5b_brand_tier": [
+    { "price_tier": "1. Budget (<500)",      "new_users": 1090296, "ret_to_2nd_30d_pct": 14.0, "ret_to_2nd_pct": 34.5, "ret_to_5th_pct": 7.3  },
+    { "price_tier": "2. Low (500-999)",      "new_users": 953210,  "ret_to_2nd_30d_pct": 17.4, "ret_to_2nd_pct": 42.5, "ret_to_5th_pct": 11.6 },
+    { "price_tier": "3. Mid (1000-1999)",    "new_users": 571169,  "ret_to_2nd_30d_pct": 20.0, "ret_to_2nd_pct": 49.2, "ret_to_5th_pct": 16.1 },
+    { "price_tier": "4. Premium (2000-3999)","new_users": 253772,  "ret_to_2nd_30d_pct": 21.0, "ret_to_2nd_pct": 49.9, "ret_to_5th_pct": 17.0 },
+    { "price_tier": "5. Luxury (4000+)",     "new_users": 33246,   "ret_to_2nd_30d_pct": 19.6, "ret_to_2nd_pct": 45.7, "ret_to_5th_pct": 14.2 }
+  ],
+
+  "finding_6_basket_retention": [
+    { "basket_size": "1 item",    "new_users": 1256666, "avg_first_aov": 1333, "ret_to_2nd_30d_pct": 15.4, "ret_to_2nd_pct": 37.0, "ret_to_5th_pct": 9.6  },
+    { "basket_size": "2-3 items", "new_users": 1089099, "avg_first_aov": 1598, "ret_to_2nd_30d_pct": 17.7, "ret_to_2nd_pct": 44.2, "ret_to_5th_pct": 12.6 },
+    { "basket_size": "4-5 items", "new_users": 361586,  "avg_first_aov": 2174, "ret_to_2nd_30d_pct": 18.2, "ret_to_2nd_pct": 46.0, "ret_to_5th_pct": 12.9 },
+    { "basket_size": "6+ items",  "new_users": 194342,  "avg_first_aov": 3277, "ret_to_2nd_30d_pct": 21.0, "ret_to_2nd_pct": 47.1, "ret_to_5th_pct": 12.9 }
+  ],
+
+  "finding_7_premiumization": [
+    { "status": "Downgrading",  "users": 106544, "pct_of_6plus_users": 43.0, "avg_asp_growth_pct": -38.5, "avg_early_asp": 1401, "avg_recent_asp": 769  },
+    { "status": "Premiumizing", "users": 74293,  "pct_of_6plus_users": 30.0, "avg_asp_growth_pct": 111.6, "avg_early_asp": 737,  "avg_recent_asp": 1498 },
+    { "status": "Stable",       "users": 66671,  "pct_of_6plus_users": 26.9, "avg_asp_growth_pct": 8.2,   "avg_early_asp": 905,  "avg_recent_asp": 974  }
+  ],
+
+  "finding_8_cohort_quality": [
+    { "cohort_month": "2024-01", "new_users": 101276, "avg_first_aov": 1632, "ret_to_2nd_30d_pct": 21.6, "ret_to_2nd_pct": 62.6, "ret_to_3rd_pct": 46.3, "ret_to_5th_pct": 29.6 },
+    { "cohort_month": "2024-02", "new_users": 98116,  "avg_first_aov": 1671, "ret_to_2nd_30d_pct": 19.0, "ret_to_2nd_pct": 60.2, "ret_to_3rd_pct": 43.2, "ret_to_5th_pct": 26.4 },
+    { "cohort_month": "2024-03", "new_users": 88276,  "avg_first_aov": 1636, "ret_to_2nd_30d_pct": 19.3, "ret_to_2nd_pct": 57.9, "ret_to_3rd_pct": 40.2, "ret_to_5th_pct": 23.5 },
+    { "cohort_month": "2024-04", "new_users": 128737, "avg_first_aov": 1641, "ret_to_2nd_30d_pct": 19.1, "ret_to_2nd_pct": 56.4, "ret_to_3rd_pct": 38.1, "ret_to_5th_pct": 21.4 },
+    { "cohort_month": "2024-05", "new_users": 88559,  "avg_first_aov": 1567, "ret_to_2nd_30d_pct": 18.1, "ret_to_2nd_pct": 54.2, "ret_to_3rd_pct": 35.7, "ret_to_5th_pct": 19.4 },
+    { "cohort_month": "2024-06", "new_users": 88258,  "avg_first_aov": 1535, "ret_to_2nd_30d_pct": 20.6, "ret_to_2nd_pct": 53.3, "ret_to_3rd_pct": 34.5, "ret_to_5th_pct": 18.2 },
+    { "cohort_month": "2024-07", "new_users": 120658, "avg_first_aov": 1544, "ret_to_2nd_30d_pct": 18.0, "ret_to_2nd_pct": 49.8, "ret_to_3rd_pct": 30.9, "ret_to_5th_pct": 15.6 },
+    { "cohort_month": "2024-08", "new_users": 106314, "avg_first_aov": 1567, "ret_to_2nd_30d_pct": 17.0, "ret_to_2nd_pct": 48.5, "ret_to_3rd_pct": 30.2, "ret_to_5th_pct": 15.4 },
+    { "cohort_month": "2024-09", "new_users": 103206, "avg_first_aov": 1593, "ret_to_2nd_30d_pct": 17.7, "ret_to_2nd_pct": 48.0, "ret_to_3rd_pct": 29.5, "ret_to_5th_pct": 14.8 },
+    { "cohort_month": "2024-10", "new_users": 115864, "avg_first_aov": 1611, "ret_to_2nd_30d_pct": 16.4, "ret_to_2nd_pct": 47.1, "ret_to_3rd_pct": 28.3, "ret_to_5th_pct": 13.5 },
+    { "cohort_month": "2024-11", "new_users": 117647, "avg_first_aov": 1624, "ret_to_2nd_30d_pct": 15.8, "ret_to_2nd_pct": 44.3, "ret_to_3rd_pct": 25.6, "ret_to_5th_pct": 12.0 },
+    { "cohort_month": "2024-12", "new_users": 105985, "avg_first_aov": 1620, "ret_to_2nd_30d_pct": 15.1, "ret_to_2nd_pct": 42.3, "ret_to_3rd_pct": 24.1, "ret_to_5th_pct": 10.9 },
+    { "cohort_month": "2025-01", "new_users": 149886, "avg_first_aov": 1595, "ret_to_2nd_30d_pct": 16.9, "ret_to_2nd_pct": 44.0, "ret_to_3rd_pct": 25.5, "ret_to_5th_pct": 11.7 },
+    { "cohort_month": "2025-02", "new_users": 92829,  "avg_first_aov": 1565, "ret_to_2nd_30d_pct": 13.9, "ret_to_2nd_pct": 40.8, "ret_to_3rd_pct": 22.7, "ret_to_5th_pct": 9.8  },
+    { "cohort_month": "2025-03", "new_users": 101916, "avg_first_aov": 1618, "ret_to_2nd_30d_pct": 16.5, "ret_to_2nd_pct": 42.4, "ret_to_3rd_pct": 24.2, "ret_to_5th_pct": 10.6 },
+    { "cohort_month": "2025-04", "new_users": 134725, "avg_first_aov": 1644, "ret_to_2nd_30d_pct": 16.0, "ret_to_2nd_pct": 40.6, "ret_to_3rd_pct": 22.1, "ret_to_5th_pct": 9.0  },
+    { "cohort_month": "2025-05", "new_users": 81151,  "avg_first_aov": 1614, "ret_to_2nd_30d_pct": 14.3, "ret_to_2nd_pct": 38.6, "ret_to_3rd_pct": 20.5, "ret_to_5th_pct": 8.3  },
+    { "cohort_month": "2025-06", "new_users": 70550,  "avg_first_aov": 1696, "ret_to_2nd_30d_pct": 16.0, "ret_to_2nd_pct": 37.0, "ret_to_3rd_pct": 19.4, "ret_to_5th_pct": 7.7  },
+    { "cohort_month": "2025-07", "new_users": 136082, "avg_first_aov": 1766, "ret_to_2nd_30d_pct": 16.5, "ret_to_2nd_pct": 37.2, "ret_to_3rd_pct": 19.2, "ret_to_5th_pct": 7.4  },
+    { "cohort_month": "2025-08", "new_users": 96654,  "avg_first_aov": 1835, "ret_to_2nd_30d_pct": 14.9, "ret_to_2nd_pct": 34.9, "ret_to_3rd_pct": 17.1, "ret_to_5th_pct": 6.0  },
+    { "cohort_month": "2025-09", "new_users": 126010, "avg_first_aov": 1812, "ret_to_2nd_30d_pct": 17.8, "ret_to_2nd_pct": 35.8, "ret_to_3rd_pct": 17.3, "ret_to_5th_pct": 5.6  },
+    { "cohort_month": "2025-10", "new_users": 108015, "avg_first_aov": 1755, "ret_to_2nd_30d_pct": 15.3, "ret_to_2nd_pct": 31.9, "ret_to_3rd_pct": 14.1, "ret_to_5th_pct": 4.1  },
+    { "cohort_month": "2025-11", "new_users": 102089, "avg_first_aov": 1847, "ret_to_2nd_30d_pct": 16.1, "ret_to_2nd_pct": 30.3, "ret_to_3rd_pct": 12.8, "ret_to_5th_pct": 3.5  },
+    { "cohort_month": "2025-12", "new_users": 103419, "avg_first_aov": 1657, "ret_to_2nd_30d_pct": 15.8, "ret_to_2nd_pct": 27.1, "ret_to_3rd_pct": 10.6, "ret_to_5th_pct": 2.8  },
+    { "cohort_month": "2026-01", "new_users": 155271, "avg_first_aov": 1764, "ret_to_2nd_30d_pct": 19.2, "ret_to_2nd_pct": 25.5, "ret_to_3rd_pct": 9.8,  "ret_to_5th_pct": 2.6, "note": "data timing artifact — insufficient repeat time" },
+    { "cohort_month": "2026-02", "new_users": 81740,  "avg_first_aov": 1745, "ret_to_2nd_30d_pct": 16.9, "ret_to_2nd_pct": 20.0, "ret_to_3rd_pct": 6.2,  "ret_to_5th_pct": 1.2, "note": "data timing artifact — insufficient repeat time" },
+    { "cohort_month": "2026-03", "new_users": 98460,  "avg_first_aov": 1817, "ret_to_2nd_30d_pct": 12.8, "ret_to_2nd_pct": 12.8, "ret_to_3rd_pct": 3.0,  "ret_to_5th_pct": 0.4, "note": "data timing artifact — insufficient repeat time" }
+  ],
+
+  "finding_9_return_window": [
+    { "days_to_2nd_bucket": "0-7 days",    "users": 292347, "avg_days": 2.0,   "ret_to_3rd_pct": 59.5, "note": ""           },
+    { "days_to_2nd_bucket": "8-14 days",   "users": 79592,  "avg_days": 10.8,  "ret_to_3rd_pct": 61.0, "note": ""           },
+    { "days_to_2nd_bucket": "15-30 days",  "users": 120509, "avg_days": 22.1,  "ret_to_3rd_pct": 63.8, "note": "peak"       },
+    { "days_to_2nd_bucket": "31-60 days",  "users": 148354, "avg_days": 44.5,  "ret_to_3rd_pct": 63.4, "note": ""           },
+    { "days_to_2nd_bucket": "61-90 days",  "users": 108978, "avg_days": 74.9,  "ret_to_3rd_pct": 62.4, "note": ""           },
+    { "days_to_2nd_bucket": "91-180 days", "users": 190033, "avg_days": 130.5, "ret_to_3rd_pct": 58.2, "note": ""           },
+    { "days_to_2nd_bucket": "180+ days",   "users": 264649, "avg_days": 336.2, "ret_to_3rd_pct": 46.4, "note": "cliff -17pt"}
+  ],
+
+  "crm_audiences": [
+    { "priority": "CRITICAL", "audience": "Sub-500 first buyers, Day 0-14",     "size": "~15K/month",    "action": "AOV lift nudge before 2nd order"  },
+    { "priority": "CRITICAL", "audience": "Day 15 no-repeat users",             "size": "~80K/month",    "action": "Personalized re-engagement"       },
+    { "priority": "HIGH",     "audience": "Active Premiumizers",                "size": "74,293 users",  "action": "Affirm + upsell"                  },
+    { "priority": "HIGH",     "audience": "Downgraders (ASP -10%+)",            "size": "106,544 users", "action": "Premium re-introduction"          },
+    { "priority": "HIGH",     "audience": "1-Day Sale first buyers, no repeat", "size": "~12K/month",    "action": "Intent qualification"             },
+    { "priority": "MEDIUM",   "audience": "AJIO premium to Tira new",          "size": "TBD via UCP",   "action": "Cross-platform bridge"            },
+    { "priority": "MEDIUM",   "audience": "Sale-only with BAU browse signal",  "size": "Ongoing",       "action": "BAU conversion nudge"             }
+  ],
+
+  "chart_specs": {
+    "qoq_users_revenue": {
+      "type": "combo_bar_line",
+      "x": "quarter",
+      "bars": ["new_users", "repeat_users"],
+      "line_right_axis": "revenue_crore",
+      "data_key": "qoq_growth",
+      "title": "Tira Growth: Users and Revenue by Quarter",
+      "colors": { "new_users": "light_blue", "repeat_users": "gold", "revenue_crore": "dark" }
+    },
+    "qoq_aov_trend": {
+      "type": "line",
+      "x": "quarter",
+      "y": "avg_aov",
+      "data_key": "qoq_growth",
+      "title": "Average Order Value by Quarter"
+    },
+    "qoq_repeat_pct": {
+      "type": "line",
+      "x": "quarter",
+      "y": "repeat_pct",
+      "data_key": "qoq_growth",
+      "title": "Repeat Users as % of Quarterly Active"
+    },
+    "tension_one_time_donut": {
+      "type": "donut",
+      "segments": [
+        { "label": "One-time buyers", "value": 58.5, "color": "red" },
+        { "label": "Repeat buyers",   "value": 41.5, "color": "gold" }
+      ],
+      "title": "58.5% of Users Placed Only One Order"
+    },
+    "first_order_aov_dist": {
+      "type": "bar",
+      "x": "aov_band",
+      "y": "pct_of_users",
+      "data_key": "first_order_aov_distribution",
+      "title": "First-Order AOV Distribution",
+      "highlight_red": ["<500", "500-999"],
+      "annotation": "36.8% of new users started below ₹1,000"
+    },
+    "aov_maturity_curve": {
+      "type": "line",
+      "x": "order_rank_bucket",
+      "y_primary": "avg_aov",
+      "y_secondary": "avg_asp",
+      "data_key": "finding_1_aov_maturity",
+      "title": "AOV & ASP Maturity Curve",
+      "annotation": "Peak at orders 26-30: AOV ₹2,651 (+59% vs order 1)"
+    },
+    "brand_exploration_curve": {
+      "type": "line",
+      "x": "order_rank_bucket",
+      "y": "avg_brands",
+      "data_key": "finding_1_aov_maturity",
+      "title": "Brand Exploration Peaks at Order 7-10",
+      "annotation": "Peak: 2.07 brands at orders 7-10, then narrows"
+    },
+    "aov_band_retention": {
+      "type": "bar",
+      "x": "first_order_aov_band",
+      "y": "ret_to_2nd_pct",
+      "data_key": "finding_2_aov_retention",
+      "title": "Retention by First-Order Value Band",
+      "highlight": "1000-1999",
+      "annotation": "+9.2 pts jump at ₹1,000 threshold"
+    },
+    "event_type_scatter": {
+      "type": "scatter",
+      "x": "avg_first_aov",
+      "y": "ret_to_2nd_pct",
+      "size": "new_users",
+      "data_key": "finding_3a_event_retention",
+      "title": "Event Type: Spend vs Retention Tradeoff",
+      "flag_high": "VIP Day - TTO",
+      "flag_low": "1 day sale"
+    },
+    "sale_dependency_donut": {
+      "type": "donut",
+      "value": "pct_of_users",
+      "label": "buyer_type",
+      "data_key": "finding_4_sale_dependency",
+      "title": "Sale Dependency Split",
+      "colors": { "Sale Only": "red", "Both BAU & Sale": "gold", "BAU Only": "grey" }
+    },
+    "premiumization_donut": {
+      "type": "donut",
+      "value": "pct_of_6plus_users",
+      "label": "status",
+      "data_key": "finding_7_premiumization",
+      "title": "Premiumization Status (6+ Order Users)",
+      "colors": { "Downgrading": "red", "Premiumizing": "gold", "Stable": "grey" }
+    },
+    "basket_size_bar": {
+      "type": "bar",
+      "x": "basket_size",
+      "y": "ret_to_2nd_pct",
+      "data_key": "finding_6_basket_retention",
+      "title": "Retention by First-Order Basket Size",
+      "annotation": "+7.2 pts jump from 1 item to 2 items"
+    },
+    "cohort_dual_axis": {
+      "type": "dual_axis_line",
+      "x": "cohort_month",
+      "y_left": "ret_to_2nd_pct",
+      "y_right": "avg_first_aov",
+      "data_key": "finding_8_cohort_quality",
+      "title": "Cohort Quality: Rising AOV, Falling Retention",
+      "note": "Shade 2026 cohorts — data timing artifact"
+    },
+    "return_window_line": {
+      "type": "line",
+      "x": "days_to_2nd_bucket",
+      "y": "ret_to_3rd_pct",
+      "data_key": "finding_9_return_window",
+      "title": "Time to 2nd Order vs Probability of 3rd Order",
+      "annotation_peak": "15-30 days = 63.8% (peak)",
+      "annotation_cliff": "180+ days = 46.4% (cliff, -17 pts)"
+    },
+    "brand_retention_bar": {
+      "type": "horizontal_bar",
+      "x": "ret_to_2nd_pct",
+      "y": "brand_name",
+      "data_key": "finding_5_brand_retention_top + finding_5_brand_retention_bottom",
+      "title": "Brand Retention Map",
+      "note": "Show top 15 gold + bottom 10 red"
+    },
+    "brand_tier_bar": {
+      "type": "bar",
+      "x": "price_tier",
+      "y": "ret_to_2nd_pct",
+      "data_key": "finding_5b_brand_tier",
+      "title": "Retention by Brand Price Tier",
+      "annotation": "Premium outperforms Luxury (49.9% vs 45.7%)"
+    }
+  }
+}

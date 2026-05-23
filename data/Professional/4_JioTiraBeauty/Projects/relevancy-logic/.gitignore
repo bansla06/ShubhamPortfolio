@@ -1,0 +1,36 @@
+# Environment
+.env
+*.env
+
+# Credentials
+*.json
+service_account*.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Data files (keep samples, ignore real data)
+data/*.csv
+!data/item_overrides_sample.csv
+!data/sample_output.csv
+data/*.xlsx
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/secrets.toml

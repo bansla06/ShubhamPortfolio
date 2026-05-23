@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/Users/shubham.bansla/anaconda3/bin/python generate_one_pager.py)"
+    ]
+  }
+}

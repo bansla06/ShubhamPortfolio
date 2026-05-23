@@ -1,0 +1,230 @@
+You are a data visualization expert. Create a single high-quality Python matplotlib figure that serves as a **one-pager insights banner** for a team presentation. The output must be a single PNG saved as `one_pager_insights.png`.
+
+## Tira Insights Design Theme
+Apply the following design system exactly — sourced from the official Tira Insights editorial stylesheet.
+
+### Palette
+| Token      | Hex       | Use                                              |
+|------------|-----------|--------------------------------------------------|
+| paper      | #F6F2E9   | Figure background — warm cream                   |
+| paper-2    | #EFE9DA   | Axes / chart frame background                    |
+| paper-3    | #E7E0CC   | Default / neutral bars, ghost elements           |
+| ink        | #1A1A1A   | All titles, axis labels, primary text            |
+| ink-soft   | #2A2A2A   | Body / annotation text                           |
+| muted      | #5A5A5A   | Captions, subtitles, tick labels                 |
+| subtle     | #8C8C8C   | Footer, metadata                                 |
+| rule       | rgba(26,26,26,0.14) | Axis lines, borders                   |
+| rule-soft  | rgba(26,26,26,0.08) | Gridlines                             |
+| gold       | #A87C30   | Positive sentiment · things to grow · highlights |
+| gold-deep  | #826021   | Secondary positive emphasis                      |
+| gold-soft  | rgba(168,124,48,0.10) | Positive fill / card background      |
+| blush      | #8A4F48   | Negative sentiment · risk · pain points          |
+| blush-soft | rgba(138,79,72,0.10)  | Negative fill / card background      |
+| sage       | #4F7259   | Healthy / neutral-positive · Android platform    |
+| sage-soft  | rgba(79,114,89,0.10)  | Healthy fill / card background       |
+
+### Semantic colour rules (follow strictly)
+- **Android platform** → sage `#4F7259` (healthier platform)
+- **iOS platform** → blush `#8A4F48` (problem platform)
+- **Positive sentiment** → gold `#A87C30`
+- **Negative sentiment** → blush `#8A4F48`
+- **Neutral sentiment** → paper-3 `#E7E0CC`
+- **Rating >= 4** → sage; **Rating >= 3** → gold; **Rating < 3** → blush
+- Gridlines: color `#1A1A1A`, alpha 0.08, linewidth 0.6
+- All spines: color `rgba(26,26,26,0.4)`, linewidth 0.8; top/right spines hidden
+- Tick label color: muted `#5A5A5A`, fontsize 8
+
+### Typography
+- Figure title / section titles: **Georgia** bold, ink `#1A1A1A`
+- Axis labels, annotations, KPI labels: **Inter** (or DejaVu Sans as fallback), ink-soft
+- Eyebrow labels (small caps above charts): Inter 700, uppercase, letter-spacing wide, gold `#A87C30`
+- Caption / footnote text: Inter, subtle `#8C8C8C`, italic
+- KPI numbers: Georgia bold, large, colored by semantic role
+
+---
+
+## Figure Spec
+- Size: `(26, 34)` inches, `dpi=150`
+- `facecolor='#F6F2E9'`  (paper)
+- All axes `facecolor='#EFE9DA'`  (paper-2)
+- Use `GridSpec` with `left=0.05, right=0.97, top=0.97, bottom=0.02`
+- `hspace=0.55, wspace=0.30`
+- Height ratios: `[0.15, 0.20, 1, 1, 1, 1, 0.10]`  (7 rows)
+- Chart-to-text ratio: at least 85% charts — no prose blocks
+
+---
+
+## Layout
+
+### Row 0 — Masthead / Header
+- 6px top border line in ink `#1A1A1A` (simulate with axhline or Rectangle patch)
+- Eyebrow label (small, gold, uppercase, tracked): `"TIRA INSIGHTS  ·  PLATFORM REPORT  ·  MAY 2026"`
+- Main title (Georgia bold, large, ink): `"App Reviews — Sentiment Analysis"`
+- Subtitle italic serif muted: `"10,435 reviews across Android & iOS  |  Apr 2023 – May 2026"`
+
+### Row 1 — KPI Stat Strip  (5 cells, separated by thin ink rules)
+Draw 5 stat cells in a horizontal strip with `border-top: 1px ink` and `border-bottom: 1px ink`, thin vertical rules between cells.
+Each cell: big Georgia number on top, small Inter uppercase label below.
+
+| # | Label                  | Value      | Number colour |
+|---|------------------------|------------|---------------|
+| 1 | Total Reviews          | 10,435     | ink #1A1A1A   |
+| 2 | Android Avg Rating     | 3.44 / 5   | sage #4F7259  |
+| 3 | Android Positive       | 60.7%      | gold #A87C30  |
+| 4 | iOS Avg Rating         | 1.94 / 5   | blush #8A4F48 |
+| 5 | iOS Negative           | 75.5%      | blush #8A4F48 |
+
+### Row 2 — Three charts
+
+**Chart A — Rating Distribution (Grouped Bar)**
+- 5 groups (★1–★5), two bars each: Android (sage) and iOS (blush)
+- Android: {1:2871, 2:288, 3:356, 4:908, 5:4530}
+- iOS:     {1:1063, 2:56,  3:41,  4:34,  5:288}
+- Percentage label above each bar in matching colour, fontsize 7
+- Legend top-right; eyebrow: "RATING DISTRIBUTION"
+- Title: "Android vs iOS — Star Ratings"
+
+**Chart B — Sentiment Split (Horizontal Stacked Bar)**
+- Two rows: Android, iOS
+- Segments: Positive (gold) | Neutral (paper-3 `#E7E0CC`) | Negative (blush)
+- Android: Pos=60.7%, Neu=4.0%, Neg=35.3%
+- iOS:     Pos=21.7%, Neu=2.8%, Neg=75.5%
+- % label inside each segment (ink or white depending on bg), fontsize 9 bold
+- Vertical reference line at 50% in muted dashed
+- Eyebrow: "SENTIMENT SPLIT"
+- Title: "Positive vs Negative — by Platform"
+
+**Chart C — Platform Health Radar (Spider)**
+- 6 axes: Avg Rating · % Positive · % 5-star · Low Negative · Volume (norm) · Recency Score
+- Android (sage, alpha 0.25 fill): [0.69, 0.61, 0.51, 0.65, 1.0, 0.55]
+- iOS (blush, alpha 0.25 fill):    [0.39, 0.22, 0.19, 0.25, 0.17, 0.45]
+- Concentric rings at 0.25, 0.5, 0.75 in rule-soft
+- Eyebrow: "PLATFORM HEALTH"
+- Title: "Health Radar — Android vs iOS"
+
+### Row 3 — Three charts
+
+**Chart D — Pain Points Grouped Horizontal Bar**
+- 6 themes, two bars each: Android (sage, lighter alpha) and iOS (blush, fuller alpha)
+  because pain points are worse on iOS
+- Themes & negative review counts:
+  | Theme              | Android | iOS |
+  |--------------------|---------|-----|
+  | Order / Returns    | 1692    | 751 |
+  | Product Quality    | 1200    | 543 |
+  | Customer Support   | 985     | 492 |
+  | Delivery/Shipping  | 718     | 324 |
+  | Payment / Refund   | 659     | 311 |
+  | Offers / Discounts | 327     | 176 |
+- Count label at end of each bar, fontsize 7
+- Eyebrow: "PAIN POINTS  ·  NEGATIVE REVIEWS"
+- Title: "What Frustrates Customers"
+
+**Chart E — Android 5.x Version Trend (Dual Axis)**
+- Primary y: bar chart of review count per version, bars colored by avg rating
+  (sage if >=4, gold if >=3, blush if <3), alpha 0.6
+- Secondary y: white line + markers for avg rating
+- Reference dashed line at rating=3.0 in muted
+- Annotate v5.8.1 with a blush arrow + label "LATEST  3.07 ↓"
+- Data:
+  | Version | Avg  | Neg% | Count |
+  |---------|------|------|-------|
+  | 5.0.0   | 3.26 | 39%  | 239   |
+  | 5.1.1   | 3.36 | 40%  | 197   |
+  | 5.2.1   | 3.27 | 40%  | 52    |
+  | 5.3.1   | 3.42 | 36%  | 107   |
+  | 5.4.0   | 3.41 | 38%  | 358   |
+  | 5.6.0   | 3.34 | 38%  | 179   |
+  | 5.6.1   | 3.21 | 43%  | 346   |
+  | 5.8.1   | 3.07 | 45%  | 385   |
+- Eyebrow: "ANDROID  ·  VERSION TREND"
+- Title: "5.x Versions — Rating & Volume"
+
+**Chart F — iOS Monthly Trend (Area + Line)**
+- Filled area chart for avg_rating (blush fill, alpha 0.2)
+- Blush line + circular markers for avg_rating
+- Secondary y-axis: dashed gold line for negative % (scale 0–100)
+- Horizontal reference at y=3.0 (muted dashed, label "Neutral threshold")
+- Data:
+  | Month   | Avg  | Neg% | Count |
+  |---------|------|------|-------|
+  | 2025-10 | 2.10 | 72%  | 40    |
+  | 2025-11 | 1.85 | 79%  | 33    |
+  | 2025-12 | 2.38 | 65%  | 40    |
+  | 2026-01 | 2.62 | 58%  | 45    |
+  | 2026-02 | 1.96 | 77%  | 47    |
+  | 2026-03 | 2.18 | 71%  | 78    |
+  | 2026-04 | 2.27 | 66%  | 90    |
+  | 2026-05 | 2.00 | 74%  | 39    |
+- Eyebrow: "iOS  ·  MONTHLY TREND"
+- Title: "Last 8 Months — Rating & Negative %"
+
+### Row 4 — Two charts
+
+**Chart G — What Customers Love (Grouped Horizontal Bar)**
+- Gold bars for Android, sage bars for iOS (love = positive things)
+  | Theme              | Android | iOS |
+  |--------------------|---------|-----|
+  | Product Quality    | 1019    | 160 |
+  | Offers / Discounts | 843     | 136 |
+  | UI / UX            | 208     | 0   |
+  | Customer Support   | 182     | 39  |
+  | Delivery/Shipping  | 170     | 41  |
+- Eyebrow: "WHAT CUSTOMERS LOVE  ·  POSITIVE REVIEWS"
+- Title: "Positive Theme Mentions"
+
+**Chart H — Theme Sentiment Heatmap (spans 2 columns)**
+- Rows: 8 themes; Columns: Android Neg% | Android Pos% | iOS Neg% | iOS Pos%
+- Neg% columns → use blush-toned colormap (low=paper-2, high=blush)
+- Pos% columns → use gold-toned colormap (low=paper-2, high=gold)
+- Annotate every cell with the value in ink, fontsize 9 bold
+- Bold column headers using eyebrow style
+- Data:
+  | Theme              | AND Neg% | AND Pos% | iOS Neg% | iOS Pos% |
+  |--------------------|----------|----------|----------|----------|
+  | Order/Returns      | 53.6     | 3.0      | 67.1     | 14.3     |
+  | Product Quality    | 38.0     | 18.7     | 48.5     | 49.7     |
+  | Customer Support   | 31.2     | 3.3      | 44.0     | 12.1     |
+  | Delivery/Shipping  | 22.7     | 3.1      | 29.0     | 12.7     |
+  | Payment/Refund     | 20.9     | 2.0      | 27.8     | 5.0      |
+  | App Performance    | 8.0      | 1.0      | 10.0     | 3.0      |
+  | UI/UX              | 5.0      | 3.8      | 6.0      | 4.0      |
+  | Offers/Discounts   | 10.4     | 15.5     | 15.7     | 42.2     |
+- Eyebrow: "THEME SENTIMENT HEATMAP"
+- Title: "% of Neg / Pos Reviews Mentioning Each Theme"
+
+### Row 5 — Two keyword charts
+
+**Chart I — Top Words in NEGATIVE Reviews (Horizontal Bar, dual-panel)**
+Left panel = Android (blush, lighter `#B07570`), Right panel = iOS (blush, full `#8A4F48`)
+Words ranked 8→1 (most frequent at top):
+Android: order, product, customer, delivery, service, return, days, experience
+iOS:     order, product, customer, service, delivery, days, return, experience
+- Use frequency rank as bar length (8 = longest)
+- No x-axis ticks — clean
+- Eyebrow: "TOP KEYWORDS  ·  NEGATIVE REVIEWS"
+- Title: "What Frustrated Customers Wrote"
+
+**Chart J — Top Words in POSITIVE Reviews (Horizontal Bar)**
+Single panel, gold bars `#A87C30`
+Words: products, experience, offers, excellent, amazing, discount, shopping, beauty
+- Eyebrow: "TOP KEYWORDS  ·  POSITIVE REVIEWS"
+- Title: "What Happy Customers Wrote"
+
+### Row 6 — Closing Footer Strip
+- Left (ink-soft, italic serif, small): "Android declining since v5.3.1 → v5.8.1 worst-rated 5.x  |  iOS critical: avg 1.94, 75.5% negative"
+- Right (subtle `#8C8C8C`, small): "Tira Insights  ·  Sentiment Analysis Pipeline  ·  May 2026"
+- Thin ink top-border rule on this strip
+
+---
+
+## Final Instructions
+- `plt.savefig('one_pager_insights.png', dpi=150, bbox_inches='tight', facecolor='#F6F2E9')`
+- Every axes: `facecolor='#EFE9DA'`, top and right spines hidden, left/bottom spines color `rgba(26,26,26,0.4)`
+- Gridlines: `color='#1A1A1A', alpha=0.08, linewidth=0.6`
+- All tick labels: color `#5A5A5A`, fontsize 8
+- All chart titles: Georgia or serif, fontweight bold, color `#1A1A1A`, fontsize 11
+- Eyebrow text: Inter/sans, uppercase, color `#A87C30` (gold), fontsize 7, letter-spacing via `labelpad`
+- Legend: `facecolor='#F6F2E9'`, `edgecolor='rgba(26,26,26,0.14)'`, `labelcolor='#1A1A1A'`
+- Do NOT use seaborn — pure matplotlib only
+- The result should look like a warm, editorial, print-quality analytics report — cream paper, charcoal ink, gold accents

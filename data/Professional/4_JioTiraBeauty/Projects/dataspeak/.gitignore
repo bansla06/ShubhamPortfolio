@@ -1,0 +1,14 @@
+.env
+*.json
+!package.json
+!package-lock.json
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+node_modules/
+.streamlit/secrets.toml
+feedback_training.csv
+data/training_data/
+data/analysis_snapshots/
+*.log

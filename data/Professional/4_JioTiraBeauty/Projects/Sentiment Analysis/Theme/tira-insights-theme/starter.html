@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>New document — Tira Insights theme</title>
+<link rel="stylesheet" href="theme.css" />
+<style>
+  /* Page-level layout for THIS document only.
+     Keep theme.css untouched — override or add per-document here. */
+  body { width: 1320px; margin: 0 auto; }
+  .page { padding: 0 80px; }
+  .section { padding: 56px 0; border-bottom: 1px solid var(--rule); }
+  .section:last-child { border-bottom: none; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     MASTHEAD
+     ============================================================ -->
+<div class="t-masthead">
+  <div class="mark">Your <em>document</em></div>
+  <div class="t-meta">Date · Section · Context</div>
+</div>
+
+<div class="page">
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <div class="section">
+    <div class="t-eyebrow">Pre-headline label</div>
+    <h1 class="t-hero" style="margin-top: 28px;">
+      Your <em>headline</em> here.<br />
+      Make it land.
+    </h1>
+    <p class="t-lede" style="margin-top: 36px; max-width: 1000px;">
+      The italic serif lede that introduces what follows. Use it to set the tone — calm, considered, but with a question underneath.
+    </p>
+
+    <div class="t-strip" style="margin-top: 56px;">
+      <div class="cell">
+        <div class="n">XX<span class="u">M</span></div>
+        <div class="l">Metric one</div>
+      </div>
+      <div class="cell">
+        <div class="n">XX<span class="u">%</span></div>
+        <div class="l">Metric two</div>
+      </div>
+      <div class="cell">
+        <div class="n">+XX<span class="u">%</span></div>
+        <div class="l">Metric three</div>
+      </div>
+      <div class="cell">
+        <div class="n">XX<span class="u">K</span></div>
+        <div class="l">Metric four</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION
+       ============================================================ -->
+  <div class="section">
+    <div class="t-section-num">01</div>
+    <div class="t-eyebrow">Section eyebrow</div>
+    <h2 class="t-h2" style="margin-top: 8px;">A <em>section heading</em> goes here.</h2>
+    <p class="t-deck" style="margin-top: 12px; max-width: 900px;">
+      The deck — a one-line summary of what this section argues.
+    </p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 36px; align-items: start;">
+      <div>
+        <p class="t-body t-dropcap">
+          Drop-cap opens a major section. Inter body type in a comfortable line-height. <b>Bold for emphasis</b> on key claims. <em>Italics for tonal accent</em>, in gold.
+        </p>
+        <p class="t-body">
+          Continue the argument here. Build it in clear claims, supported underneath by evidence.
+        </p>
+
+        <div class="t-pullquote">
+          "An italic pull quote anchors the moment of the argument."
+        </div>
+
+        <p class="t-body">
+          Close the column with the implication — what this means for the reader.
+        </p>
+      </div>
+
+      <div class="t-chart">
+        <div class="t-chart-title">Your chart title</div>
+        <div class="t-chart-sub">Italic subtitle · what this measures</div>
+
+        <!-- Insert inline SVG chart here.
+             Use classes: .axis-line, .grid-line, .axis-text, .value-text,
+             .bar-default, .bar-gold, .bar-sage, .bar-blush -->
+        <svg viewBox="0 0 600 280" width="100%" style="display: block;">
+          <line class="axis-line" x1="80" y1="20" x2="80" y2="220" />
+          <line class="axis-line" x1="80" y1="220" x2="580" y2="220" />
+          <text x="100" y="100" class="axis-text">[ chart goes here ]</text>
+        </svg>
+
+        <div class="t-chart-note">
+          A short note interprets the chart. <b>Highlight the takeaway</b> in ink-black bold.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       CLOSING THESIS
+       ============================================================ -->
+  <div class="section" style="border-bottom: none;">
+    <div class="t-closing" style="margin: 0 -80px;">
+      <div class="t-eyebrow">The thesis · in one sentence</div>
+      <h2>Your closing claim, <em>told in one sentence.</em></h2>
+      <p>
+        A short closing paragraph that lands the argument and points at what's next.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<div style="padding: 36px 80px; border-top: 4px solid var(--ink); display: flex; justify-content: space-between; align-items: baseline; font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted);">
+  <div>Document title · date · author</div>
+  <div style="font-family: var(--serif); font-style: italic; font-size: 14px; text-transform: none; letter-spacing: 0; color: var(--ink);">Subtitle or signature here.</div>
+</div>
+
+</body>
+</html>

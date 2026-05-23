@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Tira Insights · Theme · Style Guide</title>
+<link rel="stylesheet" href="theme.css" />
+<style>
+  body { width: 1320px; margin: 0 auto; padding: 0 80px; }
+
+  .guide-section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .guide-section:last-child { border-bottom: none; }
+
+  .guide-eyebrow {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .guide-title {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .guide-desc {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--muted);
+    margin-bottom: 36px;
+    max-width: 720px;
+  }
+
+  .demo {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 32px 36px;
+    margin-top: 12px;
+  }
+  .demo + .demo { margin-top: 16px; }
+
+  .demo-label {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--subtle);
+    margin-bottom: 16px;
+  }
+
+  /* Swatch grid */
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  .swatch {
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .swatch .chip {
+    height: 96px;
+  }
+  .swatch .info {
+    padding: 12px 14px 14px;
+  }
+  .swatch .name {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .swatch .hex {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .swatch .meaning {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* Type specimens */
+  .type-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 32px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    align-items: baseline;
+  }
+  .type-row:last-child { border-bottom: none; }
+  .type-row .label {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .type-row .label small {
+    display: block;
+    margin-top: 4px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    color: var(--subtle);
+    font-size: 11px;
+  }
+
+  /* Component grid */
+  .comp-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     MASTHEAD
+     ============================================================ -->
+<div class="t-masthead" style="margin: 0 -80px;">
+  <div class="mark">Tira <em>Insights</em> · Style Guide</div>
+  <div class="t-meta">Theme reference · v1.0</div>
+</div>
+
+<!-- ============================================================
+     INTRO
+     ============================================================ -->
+<div class="guide-section">
+  <div class="guide-eyebrow">The theme</div>
+  <h1 class="t-hero" style="font-size: 72px;">A warm editorial palette<br />for <em>analytical storytelling.</em></h1>
+  <p class="t-lede" style="margin-top: 24px; max-width: 900px;">
+    Born from the AOV Deep Dive newsletter. Use this guide as a reference for the palette, typography, and components shipped in <code style="font-family: var(--sans); background: var(--paper-2); padding: 1px 6px; border-radius: 3px;">theme.css</code>.
+  </p>
+</div>
+
+<!-- ============================================================
+     PALETTE
+     ============================================================ -->
+<div class="guide-section">
+  <div class="guide-eyebrow">01 · Palette</div>
+  <h2 class="guide-title">The colours</h2>
+  <p class="guide-desc">Three semantic accent colours carry meaning. The neutrals carry the page.</p>
+
+  <div class="demo-label">Neutrals · paper & ink</div>
+  <div class="swatches">
+    <div class="swatch">
+      <div class="chip" style="background: #F6F2E9; border-bottom: 1px solid var(--rule);"></div>
+      <div class="info"><div class="name">--paper</div><div class="hex">#F6F2E9</div><div class="meaning">Primary background</div></div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: #EFE9DA;"></div>
+      <div class="info"><div class="name">--paper-2</div><div class="hex">#EFE9DA</div><div class="meaning">Chart frames, secondary bands</div></div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: #E7E0CC;"></div>
+      <div class="info"><div class="name">--paper-3</div><div class="hex">#E7E0CC</div><div class="meaning">Default bars, ghost numerals</div></div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: #1A1A1A;"></div>
+      <div class="info"><div class="name" style="color: var(--ink);">--ink</div><div class="hex">#1A1A1A</div><div class="meaning">Body text, primary headings</div></div>
+    </div>
+  </div>
+
+  <div class="demo-label" style="margin-top: 32px;">Accents · semantic colour</div>
+  <div class="swatches">
+    <div class="swatch">
+      <div class="chip" style="background: #A87C30;"></div>
+      <div class="info"><div class="name">--gold</div><div class="hex">#A87C30</div><div class="meaning">Positive signal · "build this"</div></div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: #4F7259;"></div>
+      <div class="info"><div class="name">--sage</div><div class="hex">#4F7259</div><div class="meaning">Healthy · growth · sweet spot</div></div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: #8A4F48;"></div>
+      <div class="info"><div class="name">--blush</div><div class="hex">#8A4F48</div><div class="meaning">Risk · leak · "stop this"</div></div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: #826021;"></div>
+      <div class="info"><div class="name">--gold-deep</div><div class="hex">#826021</div><div class="meaning">Stat sub-units, deep emphasis</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     TYPOGRAPHY
+     ============================================================ -->
+<div class="guide-section">
+  <div class="guide-eyebrow">02 · Typography</div>
+  <h2 class="guide-title">The voice</h2>
+  <p class="guide-desc">Georgia for serif headlines and italics. Inter for sans-serif body and eyebrows. Italics carry the accent colour.</p>
+
+  <div class="demo">
+    <div class="type-row">
+      <div class="label">t-hero<small>Georgia 700 · 92px</small></div>
+      <h1 class="t-hero">A bold <em>question</em> in italics.</h1>
+    </div>
+    <div class="type-row">
+      <div class="label">t-h2<small>Georgia 700 · 52px</small></div>
+      <h2 class="t-h2">The <em>section heading</em> style.</h2>
+    </div>
+    <div class="type-row">
+      <div class="label">t-lede<small>Georgia italic · 28px</small></div>
+      <p class="t-lede">A muted italic lede sets the tone — introspective, considered, in scale of voice.</p>
+    </div>
+    <div class="type-row">
+      <div class="label">t-deck<small>Georgia italic · 22px</small></div>
+      <p class="t-deck">The deck — a one-line summary that follows a section heading.</p>
+    </div>
+    <div class="type-row">
+      <div class="label">t-eyebrow<small>Inter 700 · 11px tracked</small></div>
+      <div class="t-eyebrow">Pre-headline label</div>
+    </div>
+    <div class="type-row">
+      <div class="label">t-body<small>Inter 400 · 18px / 1.7</small></div>
+      <p class="t-body">Body copy in Inter sans. Generous line-height to keep the page calm. <b>Bold for emphasis</b> returns the text to ink-black; <em>italic accents</em> use the gold tone.</p>
+    </div>
+    <div class="type-row">
+      <div class="label">t-body t-dropcap<small>Drop-cap variant</small></div>
+      <p class="t-body t-dropcap">Drop caps in serif gold mark the opening of major sections. They reset the visual rhythm and signal that something new begins here — a chapter, a turn, a fresh argument worth following through.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     KEYSTATS
+     ============================================================ -->
+<div class="guide-section">
+  <div class="guide-eyebrow">03 · Stats</div>
+  <h2 class="guide-title">Numbers as headlines</h2>
+  <p class="guide-desc">Big serif numbers carry single insights. The strip carries four metrics in a row, separated by rules.</p>
+
+  <div class="demo">
+    <div class="demo-label">.t-keystat — single insight</div>
+    <div class="comp-grid-2">
+      <div class="t-keystat">
+        <div class="n">+59<span class="small">%</span></div>
+        <div class="l">Lifecycle AOV growth</div>
+      </div>
+      <div class="t-keystat">
+        <div class="n blush">1.67M</div>
+        <div class="l">Users · sale-only buyers</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo">
+    <div class="demo-label">.t-strip — horizontal row of metrics</div>
+    <div class="t-strip">
+      <div class="cell">
+        <div class="n">2.9<span class="u">M</span></div>
+        <div class="l">Users · 27 months</div>
+      </div>
+      <div class="cell">
+        <div class="n">22.4<span class="u">M</span></div>
+        <div class="l">Transactions</div>
+      </div>
+      <div class="cell">
+        <div class="n">+11<span class="u">%</span></div>
+        <div class="l">First-order AOV YoY</div>
+      </div>
+      <div class="cell">
+        <div class="n">+59<span class="u">%</span></div>
+        <div class="l">Lifecycle AOV</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PULL QUOTES
+     ============================================================ -->
+<div class="guide-section">
+  <div class="guide-eyebrow">04 · Pull quotes</div>
+  <h2 class="guide-title">The accent voice</h2>
+  <p class="guide-desc">Italic callouts with a coloured rule. Use sparingly — after an opening claim or before a turn in the argument.</p>
+
+  <div class="t-pullquote">
+    "We don't need to acquire better customers. We need to <b>create better first purchases.</b>"
+  </div>
+
+  <div class="t-pullquote sage">
+    "The 30 days <b>after</b> a first purchase are worth more than the 30 days <b>before.</b>"
+  </div>
+
+  <div class="t-pullquote blush">
+    "Our most loyal users are <b>not churning. They are drifting.</b> And we are letting them."
+  </div>
+</div>
+
+<!-- ============================================================
+     CARDS
+     ============================================================ -->
+<div class="guide-section">
+  <div class="guide-eyebrow">05 · Cards</div>
+  <h2 class="guide-title">Containers with meaning</h2>
+  <p class="guide-desc">Each card carries a semantic accent. Gold for opportunity, sage for healthy, blush for risk, ink for decisions.</p>
+
+  <div class="comp-grid-2">
+    <div class="t-card gold">
+      <div class="t-eyebrow no-rule">Bright spot</div>
+      <h3 class="t-h2" style="font-size: 24px; margin-top: 8px;">A signal worth amplifying.</h3>
+      <p class="t-body" style="margin-top: 12px; font-size: 15px;">350,000 K-beauty loyalists retain at 54–55% — above platform average. This is a brand cluster Tira can protect and grow.</p>
+    </div>
+
+    <div class="t-card sage">
+      <div class="t-eyebrow sage no-rule">Healthy state</div>
+      <h3 class="t-h2" style="font-size: 24px; margin-top: 8px;">The premiumizers.</h3>
+      <p class="t-body" style="margin-top: 12px; font-size: 15px;">74,000 users have doubled their ASP — from ₹738 to ₹1,498. Real organic premiumization, already in motion.</p>
+    </div>
+
+    <div class="t-card blush">
+      <div class="t-eyebrow blush no-rule">Risk · silent leak</div>
+      <h3 class="t-h2" style="font-size: 24px; margin-top: 8px;">The downgraders.</h3>
+      <p class="t-body" style="margin-top: 12px; font-size: 15px;">43% of loyal users are buying cheaper over time. ₹1,401 → ₹769 per item. Not churning — quietly trading down.</p>
+    </div>
+
+    <div class="t-card-ink">
+      <div class="t-eyebrow no-rule">Decision · Critical</div>
+      <h3 class="t-h2" style="font-size: 24px; margin-top: 8px; color: #fff;">Protect the ₹1,000 threshold.</h3>
+      <p style="font-family: var(--sans); font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.78); margin-top: 12px;">Bundle prompts, guided discovery, free-delivery breakpoints. <b style="color: #fff;">The single highest-ROI gate on the platform.</b></p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     CHART FRAME
+     ============================================================ -->
+<div class="guide-section">
+  <div class="guide-eyebrow">06 · Charts</div>
+  <h2 class="guide-title">The data frame</h2>
+  <p class="guide-desc">Inline SVG charts live inside a paper-coloured frame with title, italic subtitle, and a footnote.</p>
+
+  <div class="t-chart" style="max-width: 720px;">
+    <div class="t-chart-title">Retention by first-order AOV band</div>
+    <div class="t-chart-sub">% returning for a 2nd order · by AOV at first purchase</div>
+
+    <svg viewBox="0 0 720 320" width="100%" style="display: block;">
+      <line class="axis-line" x1="140" y1="20" x2="140" y2="240" />
+      <line class="axis-line" x1="140" y1="240" x2="690" y2="240" />
+      <line class="grid-line" x1="140" y1="185" x2="690" y2="185" />
+      <line class="grid-line" x1="140" y1="130" x2="690" y2="130" />
+      <line class="grid-line" x1="140" y1="75" x2="690" y2="75" />
+      <line class="grid-line" x1="140" y1="25" x2="690" y2="25" />
+      <text x="130" y="244" class="axis-text" text-anchor="end">0</text>
+      <text x="130" y="189" class="axis-text" text-anchor="end">15</text>
+      <text x="130" y="134" class="axis-text" text-anchor="end">30</text>
+      <text x="130" y="79"  class="axis-text" text-anchor="end">45</text>
+      <text x="130" y="29"  class="axis-text" text-anchor="end">60%</text>
+
+      <rect class="bar-blush"   x="160" y="139" width="65" height="101" />
+      <text x="192" y="255" class="axis-text" text-anchor="middle">&lt;₹500</text>
+      <text x="192" y="132" class="value-text" text-anchor="middle">27%</text>
+
+      <rect class="bar-default" x="247" y="113" width="65" height="127" />
+      <text x="279" y="255" class="axis-text" text-anchor="middle">₹500–999</text>
+      <text x="279" y="106" class="value-text" text-anchor="middle">34%</text>
+
+      <rect class="bar-gold"    x="334" y="79" width="65" height="161" />
+      <text x="366" y="255" class="axis-text-bold" text-anchor="middle">₹1k–2k</text>
+      <text x="366" y="72" class="value-text" text-anchor="middle">44%</text>
+
+      <rect class="bar-default" x="421" y="57" width="65" height="183" />
+      <text x="453" y="255" class="axis-text" text-anchor="middle">₹2k–3k</text>
+      <text x="453" y="50" class="value-text" text-anchor="middle">50%</text>
+
+      <rect class="bar-gold"    x="508" y="48" width="65" height="192" />
+      <text x="540" y="255" class="axis-text-bold" text-anchor="middle">₹3k–5k</text>
+      <text x="540" y="41" class="value-text" text-anchor="middle">52%</text>
+
+      <rect class="bar-default" x="595" y="54" width="65" height="186" />
+      <text x="627" y="255" class="axis-text" text-anchor="middle">₹5k+</text>
+      <text x="627" y="47" class="value-text" text-anchor="middle">51%</text>
+    </svg>
+
+    <div class="t-chart-note">
+      Below ₹500, <b>3 in 4 users never return.</b> Cross ₹1,000 and retention jumps from 34% to 44% — a <b>+9.3 point</b> lift from a single threshold.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     CLOSING BAND
+     ============================================================ -->
+<div class="guide-section">
+  <div class="guide-eyebrow">07 · Closing band</div>
+  <h2 class="guide-title">The end of the argument</h2>
+  <p class="guide-desc">A full-width dark band closes a document. Radial gold wash for warmth.</p>
+
+  <div class="t-closing" style="margin: 0 -80px;">
+    <div class="t-eyebrow">The thesis · in one sentence</div>
+    <h2>The next chapter is not about acquiring more.<br />It is about getting <em>more out of what we already have.</em></h2>
+    <p>
+      The premium customer is not a future aspiration — she is already in the data, hidden in plain sight. The platform's job, beginning now, is to recognise her, protect her, and build the platform around her.
+    </p>
+  </div>
+</div>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<div style="padding: 36px 0; border-top: 4px solid var(--ink); display: flex; justify-content: space-between; align-items: baseline; font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted);">
+  <div>Tira Insights · Theme Style Guide · v1.0</div>
+  <div style="font-family: var(--serif); font-style: italic; font-size: 14px; text-transform: none; letter-spacing: 0; color: var(--ink);">Drop <em>theme.css</em> into any project to use.</div>
+</div>
+
+</body>
+</html>

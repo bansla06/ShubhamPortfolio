@@ -1,0 +1,434 @@
+/* ============================================================
+   TIRA INSIGHTS — DESIGN THEME
+   A warm editorial palette for analytical storytelling.
+   Drop-in stylesheet. Pair with Georgia + Inter.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* -- Palette -------------------------------------------------- */
+  --paper:        #F6F2E9;   /* primary background — warm cream */
+  --paper-2:      #EFE9DA;   /* secondary surface — chart frames, bands */
+  --paper-3:      #E7E0CC;   /* tertiary — section-num ghost, mini bars */
+
+  --ink:          #1A1A1A;   /* body text, primary headings */
+  --ink-soft:     #2A2A2A;   /* paragraph text */
+  --muted:        #5A5A5A;   /* deck text, captions */
+  --subtle:       #8C8C8C;   /* metadata, footer text */
+
+  --rule:         rgba(26, 26, 26, 0.14);
+  --rule-soft:    rgba(26, 26, 26, 0.08);
+
+  /* Accents — used semantically:
+     gold   = positive / signal / "build A"
+     sage   = healthy / sweet-spot / growth
+     blush  = risk / leak / "stop B"  */
+  --gold:         #A87C30;
+  --gold-deep:    #826021;
+  --gold-soft:    rgba(168, 124, 48, 0.10);
+
+  --blush:        #8A4F48;
+  --blush-soft:   rgba(138, 79, 72, 0.10);
+
+  --sage:         #4F7259;
+  --sage-soft:    rgba(79, 114, 89, 0.10);
+
+  /* -- Typography ---------------------------------------------- */
+  --serif:        Georgia, 'Times New Roman', serif;
+  --sans:         'Inter', system-ui, sans-serif;
+
+  /* -- Scale --------------------------------------------------- */
+  --fs-hero:      92px;
+  --fs-h1:        56px;
+  --fs-h2:        52px;
+  --fs-lede:      28px;
+  --fs-deck:      22px;
+  --fs-pullquote: 26px;
+  --fs-body:      18px;
+  --fs-caption:   14px;
+  --fs-micro:     11px;
+
+  --tracking-eyebrow:  0.32em;
+  --tracking-label:    0.22em;
+  --tracking-meta:     0.18em;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================================
+   HEADINGS — Georgia serif, italics in accent colour
+   ============================================================ */
+
+.t-hero {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: var(--fs-hero);
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.t-hero em      { font-style: italic; color: var(--gold);  }
+.t-hero .blush  { font-style: italic; color: var(--blush); }
+.t-hero .sage   { font-style: italic; color: var(--sage);  }
+
+.t-h2 {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: var(--fs-h2);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.t-h2 em      { font-style: italic; color: var(--gold);  }
+.t-h2 .blush  { font-style: italic; color: var(--blush); }
+.t-h2 .sage   { font-style: italic; color: var(--sage);  }
+
+/* ============================================================
+   LEDES + DECKS — italic serif
+   ============================================================ */
+
+.t-lede {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--fs-lede);
+  line-height: 1.45;
+  color: var(--muted);
+  text-wrap: balance;
+}
+
+.t-deck {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--fs-deck);
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* ============================================================
+   EYEBROWS + LABELS — Inter, uppercase, tracked
+   ============================================================ */
+
+.t-eyebrow {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+.t-eyebrow::before {
+  content: "";
+  width: 48px;
+  height: 1px;
+  background: currentColor;
+}
+.t-eyebrow.blush { color: var(--blush); }
+.t-eyebrow.sage  { color: var(--sage);  }
+.t-eyebrow.no-rule::before { display: none; }
+
+.t-label {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.t-meta {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+  color: var(--subtle);
+}
+
+/* ============================================================
+   BODY COPY
+   ============================================================ */
+
+.t-body {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: var(--fs-body);
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: 18px;
+}
+.t-body b { font-weight: 700; color: var(--ink); }
+.t-body em { font-style: italic; color: var(--gold-deep); font-weight: 500; }
+
+/* Drop cap — first letter in serif gold */
+.t-dropcap::first-letter {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 84px;
+  float: left;
+  line-height: 0.85;
+  padding: 8px 14px 0 0;
+  color: var(--gold);
+}
+
+/* ============================================================
+   PULL QUOTES
+   ============================================================ */
+
+.t-pullquote {
+  margin: 28px 0;
+  padding: 24px 32px;
+  border-left: 3px solid var(--gold);
+  background: var(--gold-soft);
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--fs-pullquote);
+  line-height: 1.4;
+  color: var(--ink);
+}
+.t-pullquote b { font-style: normal; font-weight: 700; }
+.t-pullquote.blush { border-left-color: var(--blush); background: var(--blush-soft); }
+.t-pullquote.sage  { border-left-color: var(--sage);  background: var(--sage-soft);  }
+
+/* ============================================================
+   KEY STATS — big serif numbers
+   ============================================================ */
+
+.t-keystat .n {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 72px;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--gold);
+}
+.t-keystat .n .small { font-size: 36px; color: var(--gold-deep); }
+.t-keystat .n.blush { color: var(--blush); }
+.t-keystat .n.sage  { color: var(--sage);  }
+.t-keystat .l {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+/* ============================================================
+   STAT STRIP — horizontal row of metrics with rule dividers
+   ============================================================ */
+
+.t-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+.t-strip .cell {
+  padding: 22px 24px;
+  border-right: 1px solid var(--rule);
+}
+.t-strip .cell:last-child { border-right: none; }
+.t-strip .cell .n {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+.t-strip .cell .n .u { font-size: 24px; color: var(--gold); }
+.t-strip .cell .l {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: var(--fs-micro);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+/* ============================================================
+   CHART FRAMES
+   ============================================================ */
+
+.t-chart {
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  padding: 28px 32px;
+  border-radius: 6px;
+}
+.t-chart-title {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.t-chart-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: var(--fs-caption);
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.t-chart-note {
+  font-family: var(--sans);
+  font-size: var(--fs-micro);
+  line-height: 1.5;
+  color: var(--muted);
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule-soft);
+}
+.t-chart-note b { color: var(--ink); font-weight: 600; }
+
+/* SVG defaults — apply to inline charts */
+svg .grid-line     { stroke: rgba(26, 26, 26, 0.08); stroke-width: 1; }
+svg .axis-line     { stroke: rgba(26, 26, 26, 0.4);  stroke-width: 1; }
+svg .axis-text     { font-family: var(--sans); font-size: 11px; fill: var(--muted); font-weight: 500; }
+svg .axis-text-bold{ font-family: var(--sans); font-size: 11px; fill: var(--ink);   font-weight: 600; }
+svg .value-text    { font-family: var(--sans); font-size: 12px; font-weight: 700;   fill: var(--ink); }
+svg .bar-default   { fill: var(--paper-3); }
+svg .bar-gold      { fill: var(--gold);    }
+svg .bar-blush     { fill: var(--blush);   }
+svg .bar-sage      { fill: var(--sage);    }
+
+/* ============================================================
+   CARDS — light card with semantic accent
+   ============================================================ */
+
+.t-card {
+  background: #FFFFFF;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 24px 28px;
+}
+.t-card.gold  { background: var(--gold-soft);  border-left: 3px solid var(--gold);  border-color: transparent var(--rule) var(--rule) var(--gold); }
+.t-card.sage  { background: var(--sage-soft);  border-left: 3px solid var(--sage);  border-color: transparent var(--rule) var(--rule) var(--sage); }
+.t-card.blush { background: var(--blush-soft); border-left: 3px solid var(--blush); border-color: transparent var(--rule) var(--rule) var(--blush); }
+
+/* Dark "decision" card */
+.t-card-ink {
+  background: var(--ink);
+  color: #fff;
+  border-radius: 4px;
+  padding: 24px 28px;
+}
+.t-card-ink .t-eyebrow { color: var(--gold); }
+.t-card-ink b { color: #fff; }
+
+/* ============================================================
+   CLOSING BAND — full-width dark with radial accent
+   ============================================================ */
+
+.t-closing {
+  background: var(--ink);
+  color: #fff;
+  padding: 72px 96px;
+  position: relative;
+  overflow: hidden;
+}
+.t-closing::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(168, 124, 48, 0.18) 0%, transparent 50%);
+  pointer-events: none;
+}
+.t-closing > * { position: relative; z-index: 2; }
+.t-closing h2 {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.t-closing h2 em { font-style: italic; color: var(--gold); }
+.t-closing p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: var(--fs-deck);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
+  margin-top: 28px;
+  max-width: 900px;
+}
+.t-closing .t-eyebrow {
+  color: var(--gold);
+  margin-bottom: 28px;
+}
+
+/* ============================================================
+   MASTHEAD — top-of-page brand rule
+   ============================================================ */
+
+.t-masthead {
+  border-top: 6px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding: 28px 80px 24px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  background: var(--paper);
+}
+.t-masthead .mark {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 32px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.t-masthead .mark em { font-style: italic; color: var(--gold); }
+
+/* ============================================================
+   SECTION RULES
+   ============================================================ */
+
+.t-section-num {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 80px;
+  line-height: 0.85;
+  color: var(--paper-3);
+  margin-bottom: -12px;
+}
+
+/* ============================================================
+   PRINT — backgrounds + page-fit
+   ============================================================ */
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  html, body { background: var(--paper) !important; }
+}

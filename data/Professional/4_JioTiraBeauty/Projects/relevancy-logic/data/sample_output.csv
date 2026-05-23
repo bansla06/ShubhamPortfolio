@@ -1,0 +1,9 @@
+item_id,Item Code,Brand,L1,Product Priority,Social Nudge
+1000001,ITEM_001,Brand A,Skin,1,1000+ units sold in the last month
+1000002,ITEM_002,Brand B,Makeup,2,500+ units sold in the last month
+1000003,ITEM_003,Brand A,Skin,3,
+1000004,ITEM_004,Brand C,Fragrance,4,1000+ units sold in the last month
+1000005,COMBO_ITEM_005,Brand B,Makeup,5,
+1000006,ITEM_006,Brand D,Hair,6,500+ units sold in the last month
+1000007,ITEM_007,Brand C,Skin,7,
+1000008,ITEM_008,Brand E,Bath & Body,8,
