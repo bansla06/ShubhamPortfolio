@@ -2,7 +2,7 @@ SELECT A.USER_ID , A.cash_out, B.winning_amount
 from
 (
 select USER_ID, ROUND(sum (TRANSACTION_AMOUNT ) ,2)as cash_out 
-from `swoo-analytics-bq.swoo_wallet.WALLET_TRANSACTION` 
+from `your-project-id.wallet_db.WALLET_TRANSACTION` 
 where STATUS = "SUCCESS" 
 and TRANSACTION_TYPE = "DEBIT"
 and date(createDateTime) >= "2019-05-01"
@@ -11,7 +11,7 @@ group by 1
 LEFT JOIN
 (
 select USER_ID,ROUND( sum(TRANSACTION_AMOUNT ),2) as winning_amount
-from `swoo-analytics-bq.swoo_wallet.WALLET_TRANSACTION` 
+from `your-project-id.wallet_db.WALLET_TRANSACTION` 
 where STATUS = "SUCCESS" 
 and TRANSACTION_TYPE = "CREDIT"
 and date(createDateTime) >= "2019-05-01"
@@ -33,7 +33,7 @@ SELECT A.USER_ID , A.cash_out, B.winning_amount
 from
 (
 select USER_ID, ROUND(sum (TRANSACTION_AMOUNT ) ,2)as cash_out 
-from `swoo-analytics-bq.swoo_wallet.WALLET_TRANSACTION` 
+from `your-project-id.wallet_db.WALLET_TRANSACTION` 
 where STATUS = "SUCCESS" 
 and TRANSACTION_TYPE = "DEBIT"
 and date(createDateTime) >= "2019-05-01"
@@ -42,7 +42,7 @@ group by 1
 LEFT JOIN
 (
 select USER_ID,ROUND( sum(TRANSACTION_AMOUNT ),2) as winning_amount
-from `swoo-analytics-bq.swoo_wallet.WALLET_TRANSACTION` 
+from `your-project-id.wallet_db.WALLET_TRANSACTION` 
 where STATUS = "SUCCESS" 
 and TRANSACTION_TYPE = "CREDIT"
 and date(createDateTime) >= "2019-05-01"
@@ -58,7 +58,7 @@ select A.user_id , SUM (CAST (B.cost_amount AS INT64) )as money_spend
 from
 (
 SELECT cast(user_id as INT64) as user_id,package_id
-FROM `swoo-analytics-bq.analytics_data.ua_derived_data_v3` 
+FROM `your-project-id.app_analytics.ua_processed_db_v3` 
 WHERE DATE(occurred) >= '2019-05-01'
 AND body_name = 'p2pmarketplace_marketplacetransactionsuccess'
 GROUP BY 1,2
@@ -68,7 +68,7 @@ LEFT JOIN
 SELECT package_id,
 REPLACE(SPLIT(SPLIT(cost_unit,",") [OFFSET(0)],":") [OFFSET(1)],"'","") as cost_type,
 REPLACE(SPLIT(SPLIT(cost_unit,",") [OFFSET(1)],":") [OFFSET(1)],"'","") as cost_amount
-FROM `swoo-analytics-bq.swoo_plus_db.ripple_packages`
+FROM `your-project-id.premium_games_db.ripple_packages`
 WHERE package_region IN ('IN')
 ) B
 ON A.package_id  = B.package_id
@@ -85,7 +85,7 @@ order by 2
 
 
 select SUM (CAST (REGEXP_REPLACE(winning_amount,'[^0-9]','') AS INT64)) as winning_amount
-from `swoo_plus_db.user_contest_winnings` 
+from `premium_games_db.user_contest_winnings` 
 where user_id = 11319979
 and winning_amount LIKE '%COINS%'
 
@@ -96,7 +96,7 @@ select A.user_id , SUM(amount_spend_cash)
 from
 (
 SELECT user_id,package_id
-FROM `swoo-analytics-bq.analytics_data.ua_derived_data_v3` 
+FROM `your-project-id.app_analytics.ua_processed_db_v3` 
 WHERE DATE(occurred) = '2019-05-07'
 AND body_name = 'p2pmarketplace_marketplacetransactionsuccess'
 GROUP BY 1,2
@@ -104,7 +104,7 @@ GROUP BY 1,2
 LEFT JOIN
 (
 select package_id, CAST (REGEXP_REPLACE(cost_unit,'[^0-9]','') AS INT64) as amount_spend_cash
-from `swoo_plus_db.ripple_packages`
+from `premium_games_db.ripple_packages`
 where cost_unit LIKE '%CASH%'
 ) B
 ON A.package_id = B.package_id
@@ -119,7 +119,7 @@ sum(case WHEN items_type = "COINS" THEN B.items_amount end) as No_of_coins
 from
 (
 SELECT user_id,package_id
-FROM `swoo-analytics-bq.analytics_data.ua_derived_data_v3` 
+FROM `your-project-id.app_analytics.ua_processed_db_v3` 
 WHERE DATE(occurred) >= '2019-05-01'
 AND body_name = 'p2pmarketplace_marketplacetransactionsuccess'
 GROUP BY 1,2
@@ -132,7 +132,7 @@ REPLACE(SPLIT(SPLIT(cost_unit,",") [OFFSET(1)],":") [OFFSET(1)],"'","") as cost_
 REPLACE(REPLACE(SPLIT(SPLIT(cost_unit,",") [OFFSET(2)],":") [OFFSET(1)],"'",""),"}","") as cost_currency,
 REPLACE(SPLIT(SPLIT(items,",") [OFFSET(0)],":") [OFFSET(1)],"'","") as items_type,
 CAST (REPLACE(SPLIT(SPLIT(items,",") [OFFSET(1)],":") [OFFSET(1)],"'","")AS INT64) as items_amount
-FROM `swoo-analytics-bq.swoo_plus_db.ripple_packages`
+FROM `your-project-id.premium_games_db.ripple_packages`
 WHERE package_region IN ('IN')
 ) B
 ON A.package_id  = B.package_id

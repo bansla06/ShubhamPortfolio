@@ -7,7 +7,7 @@ SELECT EXTRACT(HOUR FROM start_time) AS CHour
       ,game_id
       ,game_type_id
       ,title
-FROM `swoo_gaming_service.game`
+FROM `gaming_service_db.game`
 WHERE is_deleted = 0 AND game_type_id IN ('Trivia') AND EXTRACT(HOUR FROM start_time) =16
 AND date(start_time) >= '2018-12-23'
 )
@@ -19,7 +19,7 @@ SELECT EXTRACT(DATE FROM occurred) as CDate
           ELSE "NA"
        END AS GameType
       ,COUNT(Distinct device_channel) AS DistinctUsers
-FROM `analytics_data.urban_airship_v2` UAS
+FROM `app_analytics.urban_airship_v2` UAS
 INNER JOIN Games 
 ON uas.game_id = Games.game_id
 AND type = "CUSTOM" 

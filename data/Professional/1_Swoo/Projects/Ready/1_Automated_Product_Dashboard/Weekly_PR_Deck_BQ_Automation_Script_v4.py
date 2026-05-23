@@ -3,10 +3,10 @@
 ##################################################################################################################################
 from google.cloud import bigquery
 from google.oauth2 import service_account
-credentials = service_account.Credentials.from_service_account_file('/Users/shubham/Desktop/PRODUCT_DECK/Swoo/SWOO-Analytics-BQ-7ef282b1d58b.json')
-project_id = 'swoo-analytics-bq'
+credentials = service_account.Credentials.from_service_account_file('/path/to/service-account.json')
+project_id = 'your-project-id'
 client = bigquery.Client(credentials= credentials,project=project_id)
-private_key = '/Users/shubham/Desktop/PRODUCT_DECK/Swoo/SWOO-Analytics-BQ-7ef282b1d58b.json'
+private_key = '/path/to/service-account.json'
 import pandas as pd
 import numpy as np
 print('Connection to BigQuery is successful')
@@ -19,7 +19,7 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 # use creds to create a client to interact with the Google Drive API
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-creds = ServiceAccountCredentials.from_json_keyfile_name('/Users/shubham/Desktop/PRODUCT_DECK/Swoo/SWOO-Analytics-BQ-7ef282b1d58b.json', scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name('/path/to/service-account.json', scope)
 client_sheets = gspread.authorize(creds)
 print('Connection to Google Sheets is successful')
 #import pandas as pd
@@ -53,15 +53,15 @@ ed= str(end_ref.year)+'-'+str(end_ref.month)+'-'+str(end_ref.day)
 ##################################################################################################################################
 
 ####### --------------------------------------------------------------------------------------------------------------------------
-#### ua_app_derived_data_v3
-dataset_id = 'derived_data'
-table_ref = client.dataset(dataset_id).table('ua_app_derived_data_v3')
+#### ua_app_processed_db_v3
+dataset_id = 'processed_db'
+table_ref = client.dataset(dataset_id).table('ua_app_processed_db_v3')
 job_config = bigquery.QueryJobConfig()
 job_config.destination = table_ref
 job_config.write_disposition = bigquery.WriteDisposition.WRITE_TRUNCATE
 sql = """
 SELECT date,type,device_channel
-FROM `swoo-analytics-bq.daily_dashboard.ua_app_derived_data_v1`
+FROM `your-project-id.reporting_db.ua_app_processed_db_v1`
 WHERE type IN ('OPEN','FIRST_OPEN')
 GROUP BY 1,2,3
 """
@@ -76,15 +76,15 @@ query_job = client.query(
 query_job.result()  # Waits for the query to finish
 print('Query results loaded to table {}'.format(table_ref.path))
 ####### --------------------------------------------------------------------------------------------------------------------------
-#### ua_game_derived_data_v3
-dataset_id = 'derived_data'
-table_ref = client.dataset(dataset_id).table('ua_game_derived_data_v3')
+#### ua_game_processed_db_v3
+dataset_id = 'processed_db'
+table_ref = client.dataset(dataset_id).table('ua_game_processed_db_v3')
 job_config = bigquery.QueryJobConfig()
 job_config.destination = table_ref
 job_config.write_disposition = bigquery.WriteDisposition.WRITE_TRUNCATE
 sql = """
 SELECT date,body_name,device_channel
-FROM `swoo-analytics-bq.analytics_data.ua_derived_data_v1`
+FROM `your-project-id.app_analytics.ua_processed_db_v1`
 WHERE type IN ('CUSTOM')
 AND (body_name LIKE '%_started_playing%' OR (body_name IN ('swooperstar_gamelandingscreen'))) --IN ('trivia_started_playing', 'bingo_started_playing', 'candyrush_started_playing')
 GROUP BY 1,2,3
@@ -108,7 +108,7 @@ print('Query results loaded to table {}'.format(table_ref.path))
 ### ------------------------------------------------------------------------------------------------------------------------------
 ## App_UA_Retention_WAU
 # dataset_id = 'your_dataset_id'
-dataset_id = 'derived_data'
+dataset_id = 'processed_db'
 # Set the destination table
 table_ref = client.dataset(dataset_id).table('App_UA_Retention_WAU')
 job_config = bigquery.QueryJobConfig()
@@ -122,10 +122,10 @@ sql = """
 SELECT b.date as Date,device_channel--COUNT(DISTINCT a.developer_identity) as WAU 
 FROM (
 SELECT date,device_channel
-FROM `swoo-analytics-bq.derived_data.ua_app_derived_data_v3`
+FROM `your-project-id.processed_db.ua_app_processed_db_v3`
 GROUP BY 1,2) a
 CROSS JOIN (
-SELECT date FROM `swoo-analytics-bq.analytics_data.dates_refer`
+SELECT date FROM `your-project-id.app_analytics.dates_refer`
 WHERE date >= '2018-05-01' AND date <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
 GROUP BY 1) b
 WHERE a.date >= DATE_SUB(b.date, INTERVAL 6 DAY) AND a.date <= b.date
@@ -143,7 +143,7 @@ query_job.result()  # Waits for the query to finish
 print('Query results loaded to table {}'.format(table_ref.path))
 ### ------------------------------------------------------------------------------------------------------------------------------
 ## App_UA_Retention_CURR
-dataset_id = 'derived_data'
+dataset_id = 'processed_db'
 table_ref = client.dataset(dataset_id).table('App_UA_Retention_CURR')
 job_config = bigquery.QueryJobConfig()
 job_config.destination = table_ref
@@ -154,10 +154,10 @@ FROM (
 SELECT b.date as date,device_channel
 FROM (
 SELECT date,device_channel
-FROM `swoo-analytics-bq.derived_data.ua_app_derived_data_v3`
+FROM `your-project-id.processed_db.ua_app_processed_db_v3`
 GROUP BY 1,2) a
 CROSS JOIN (
-SELECT date FROM `swoo-analytics-bq.analytics_data.dates_refer`
+SELECT date FROM `your-project-id.app_analytics.dates_refer`
 WHERE date >= '2018-05-01' AND date <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
 GROUP BY 1) b
 WHERE a.date >= DATE_SUB(b.date, INTERVAL 13 DAY) AND a.date <= DATE_SUB(b.date, INTERVAL 7 DAY)
@@ -166,10 +166,10 @@ JOIN (
 SELECT b.date as date,device_channel
 FROM (
 SELECT date,device_channel
-FROM `swoo-analytics-bq.derived_data.ua_app_derived_data_v3`
+FROM `your-project-id.processed_db.ua_app_processed_db_v3`
 GROUP BY 1,2) a
 CROSS JOIN (
-SELECT date FROM `swoo-analytics-bq.analytics_data.dates_refer`
+SELECT date FROM `your-project-id.app_analytics.dates_refer`
 WHERE date >= '2018-05-01' AND date <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
 GROUP BY 1) b
 WHERE a.date >= DATE_SUB(b.date, INTERVAL 20 DAY) AND a.date <= DATE_SUB(b.date, INTERVAL 14 DAY)
@@ -189,7 +189,7 @@ query_job.result()  # Waits for the query to finish
 print('Query results loaded to table {}'.format(table_ref.path))
 ### ------------------------------------------------------------------------------------------------------------------------------
 ## App_UA_Retention_NURR
-dataset_id = 'derived_data'
+dataset_id = 'processed_db'
 table_ref = client.dataset(dataset_id).table('App_UA_Retention_NURR')
 job_config = bigquery.QueryJobConfig()
 job_config.destination = table_ref
@@ -198,11 +198,11 @@ sql = """
 SELECT b.date as Date,device_channel--,COUNT(DISTINCT developer_identity) AS NewUsers
 FROM (
 SELECT date,device_channel
-FROM `swoo-analytics-bq.derived_data.ua_app_derived_data_v3`
+FROM `your-project-id.processed_db.ua_app_processed_db_v3`
 WHERE type = 'FIRST_OPEN'
 GROUP BY 1,2) a
 CROSS JOIN (
-SELECT date FROM `swoo-analytics-bq.analytics_data.dates_refer`
+SELECT date FROM `your-project-id.app_analytics.dates_refer`
 WHERE date >= '2018-05-01' AND date <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
 GROUP BY 1) b
 WHERE a.date >= DATE_SUB(b.date, INTERVAL 13 DAY) AND a.date <= DATE_SUB(b.date, INTERVAL 7 DAY)
@@ -220,7 +220,7 @@ query_job.result()  # Waits for the query to finish
 print('Query results loaded to table {}'.format(table_ref.path))
 ### ------------------------------------------------------------------------------------------------------------------------------
 ## App_UA_Retention_RURR
-dataset_id = 'derived_data'
+dataset_id = 'processed_db'
 table_ref = client.dataset(dataset_id).table('App_UA_Retention_RURR')
 job_config = bigquery.QueryJobConfig()
 job_config.destination = table_ref
@@ -229,10 +229,10 @@ sql = """
 SELECT b.date as Date,device_channel 
 FROM (
 SELECT date,device_channel
-FROM `swoo-analytics-bq.derived_data.ua_app_derived_data_v3`
+FROM `your-project-id.processed_db.ua_app_processed_db_v3`
 GROUP BY 1,2) a
 CROSS JOIN (
-SELECT date FROM `swoo-analytics-bq.analytics_data.dates_refer`
+SELECT date FROM `your-project-id.app_analytics.dates_refer`
 WHERE date >= '2018-05-01' AND date <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
 GROUP BY 1) b
 WHERE a.date >= DATE_SUB(b.date, INTERVAL 13 DAY) AND a.date <= DATE_SUB(b.date, INTERVAL 7 DAY)
@@ -257,7 +257,7 @@ print('Query results loaded to table {}'.format(table_ref.path))
 ### ------------------------------------------------------------------------------------------------------------------------------
 ## Game_wise_UA_Retention_WAU
 # dataset_id = 'your_dataset_id'
-dataset_id = 'derived_data'
+dataset_id = 'processed_db'
 # Set the destination table
 table_ref = client.dataset(dataset_id).table('Game_wise_UA_Retention_WAU')
 job_config = bigquery.QueryJobConfig()
@@ -271,10 +271,10 @@ sql = """
 SELECT b.date as Date,body_name,device_channel--COUNT(DISTINCT a.developer_identity) as WAU 
 FROM (
 SELECT date,body_name,device_channel
-FROM `swoo-analytics-bq.derived_data.ua_game_derived_data_v3`
+FROM `your-project-id.processed_db.ua_game_processed_db_v3`
 GROUP BY 1,2,3) a
 CROSS JOIN (
-SELECT date FROM `swoo-analytics-bq.analytics_data.dates_refer`
+SELECT date FROM `your-project-id.app_analytics.dates_refer`
 WHERE date >= '2018-05-01' AND date <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
 GROUP BY 1) b
 WHERE a.date >= DATE_SUB(b.date, INTERVAL 6 DAY) AND a.date <= b.date
@@ -292,7 +292,7 @@ query_job.result()  # Waits for the query to finish
 print('Query results loaded to table {}'.format(table_ref.path))
 ### ------------------------------------------------------------------------------------------------------------------------------
 ## Game_wise_UA_Retention_CURR
-dataset_id = 'derived_data'
+dataset_id = 'processed_db'
 table_ref = client.dataset(dataset_id).table('Game_wise_UA_Retention_CURR')
 job_config = bigquery.QueryJobConfig()
 job_config.destination = table_ref
@@ -303,10 +303,10 @@ FROM (
 SELECT b.date as date,body_name,device_channel
 FROM (
 SELECT date,body_name,device_channel
-FROM `swoo-analytics-bq.derived_data.ua_game_derived_data_v3`
+FROM `your-project-id.processed_db.ua_game_processed_db_v3`
 GROUP BY 1,2,3) a
 CROSS JOIN (
-SELECT date FROM `swoo-analytics-bq.analytics_data.dates_refer`
+SELECT date FROM `your-project-id.app_analytics.dates_refer`
 WHERE date >= '2018-05-01' AND date <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
 GROUP BY 1) b
 WHERE a.date >= DATE_SUB(b.date, INTERVAL 13 DAY) AND a.date <= DATE_SUB(b.date, INTERVAL 7 DAY)
@@ -315,10 +315,10 @@ JOIN (
 SELECT b.date as date,body_name,device_channel
 FROM (
 SELECT date,body_name,device_channel
-FROM `swoo-analytics-bq.derived_data.ua_game_derived_data_v3`
+FROM `your-project-id.processed_db.ua_game_processed_db_v3`
 GROUP BY 1,2,3) a
 CROSS JOIN (
-SELECT date FROM `swoo-analytics-bq.analytics_data.dates_refer`
+SELECT date FROM `your-project-id.app_analytics.dates_refer`
 WHERE date >= '2018-05-01' AND date <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
 GROUP BY 1) b
 WHERE a.date >= DATE_SUB(b.date, INTERVAL 20 DAY) AND a.date <= DATE_SUB(b.date, INTERVAL 14 DAY)
@@ -338,7 +338,7 @@ query_job.result()  # Waits for the query to finish
 print('Query results loaded to table {}'.format(table_ref.path))
 ### ------------------------------------------------------------------------------------------------------------------------------
 ## Game_wise_UA_Retention_NURR
-dataset_id = 'derived_data'
+dataset_id = 'processed_db'
 table_ref = client.dataset(dataset_id).table('Game_wise_UA_Retention_NURR')
 job_config = bigquery.QueryJobConfig()
 job_config.destination = table_ref
@@ -347,10 +347,10 @@ sql = """
 SELECT b.date as Date,body_name,device_channel--,COUNT(DISTINCT developer_identity) AS NewUsers
 FROM (
 SELECT body_name,device_channel,MIN(date) as date
-FROM `swoo-analytics-bq.derived_data.ua_game_derived_data_v3`
+FROM `your-project-id.processed_db.ua_game_processed_db_v3`
 GROUP BY 1,2) a
 CROSS JOIN (
-SELECT date FROM `swoo-analytics-bq.analytics_data.dates_refer`
+SELECT date FROM `your-project-id.app_analytics.dates_refer`
 WHERE date >= '2018-05-01' AND date <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
 GROUP BY 1) b
 WHERE a.date >= DATE_SUB(b.date, INTERVAL 13 DAY) AND a.date <= DATE_SUB(b.date, INTERVAL 7 DAY)
@@ -368,7 +368,7 @@ query_job.result()  # Waits for the query to finish
 print('Query results loaded to table {}'.format(table_ref.path))
 ### ------------------------------------------------------------------------------------------------------------------------------
 ## Game_wise_UA_Retention_RURR
-dataset_id = 'derived_data'
+dataset_id = 'processed_db'
 table_ref = client.dataset(dataset_id).table('Game_wise_UA_Retention_RURR')
 job_config = bigquery.QueryJobConfig()
 job_config.destination = table_ref
@@ -377,10 +377,10 @@ sql = """
 SELECT b.date as Date,body_name,device_channel 
 FROM (
 SELECT date,body_name,device_channel
-FROM `swoo-analytics-bq.derived_data.ua_game_derived_data_v3`
+FROM `your-project-id.processed_db.ua_game_processed_db_v3`
 GROUP BY 1,2,3) a
 CROSS JOIN (
-SELECT date FROM `swoo-analytics-bq.analytics_data.dates_refer`
+SELECT date FROM `your-project-id.app_analytics.dates_refer`
 WHERE date >= '2018-05-01' AND date <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
 GROUP BY 1) b
 WHERE a.date >= DATE_SUB(b.date, INTERVAL 13 DAY) AND a.date <= DATE_SUB(b.date, INTERVAL 7 DAY)
@@ -420,7 +420,7 @@ print('Query results loaded to table {}'.format(table_ref.path))
 ## DAU, WAU & MAU
 q1 = client.query("""
 SELECT Date,DAU,WAU,MAU
-FROM `swoo-analytics-bq.daily_dashboard.App_DAU_WAU_MAU`
+FROM `your-project-id.reporting_db.App_DAU_WAU_MAU`
 GROUP BY 1,2,3,4
 ORDER BY 1
 """)
@@ -429,7 +429,7 @@ dau_wau_mau = q1.to_dataframe()
 ## Distinct Game Players
 q2 = client.query("""
 SELECT DATE as Date,MAX(Users) as DistinctGamePlayers
-FROM `swoo-analytics-bq.daily_dashboard.ua_user_played`
+FROM `your-project-id.reporting_db.ua_user_played`
 GROUP BY 1
 ORDER BY 1
 """)
@@ -445,7 +445,7 @@ dau_wau_mau_dgp = dau_wau_mau_dgp.drop('index',axis = 1)
 
 dau_wau_mau_dgp.name = 'DAU_WAU_MAU_DistinctGamePlayers'
 
-# dataset_ref = client.dataset('derived_data')
+# dataset_ref = client.dataset('processed_db')
 # table_ref = dataset_ref.table('DAU_WAU_MAU_DistinctGamePlayers')
 # client.delete_table(table_ref)
 # print('Table {}:{} deleted.'.format(dataset_ref, table_ref))
@@ -472,11 +472,11 @@ FROM (
 SELECT b.date as Date,device_channel
 FROM (
 SELECT date,device_channel
-FROM `swoo-analytics-bq.derived_data.ua_app_derived_data_v3`
+FROM `your-project-id.processed_db.ua_app_processed_db_v3`
 WHERE type IN ('OPEN')
 GROUP BY 1,2) a
 CROSS JOIN (
-SELECT date FROM `swoo-analytics-bq.analytics_data.dates_refer`
+SELECT date FROM `your-project-id.app_analytics.dates_refer`
 WHERE date >= '2018-05-01' AND date <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
 GROUP BY 1) b
 WHERE a.date >= DATE_SUB(b.date, INTERVAL 6 DAY) AND a.date <= b.date
@@ -485,11 +485,11 @@ JOIN (
 SELECT b.date as Date,device_channel 
 FROM (
 SELECT date,device_channel
-FROM `swoo-analytics-bq.derived_data.ua_app_derived_data_v3`
+FROM `your-project-id.processed_db.ua_app_processed_db_v3`
 WHERE type IN ('OPEN','FIRST_OPEN')
 GROUP BY 1,2) a
 CROSS JOIN (
-SELECT date FROM `swoo-analytics-bq.analytics_data.dates_refer`
+SELECT date FROM `your-project-id.app_analytics.dates_refer`
 WHERE date >= '2018-05-01' AND date <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
 GROUP BY 1) b
 WHERE a.date >= DATE_SUB(b.date, INTERVAL 13 DAY) AND a.date <= DATE_SUB(b.date, INTERVAL 7 DAY)
@@ -504,11 +504,11 @@ q4 = client.query("""
 SELECT b.date as Date,COUNT(DISTINCT device_channel) as NewUsers
 FROM (
 SELECT date,device_channel
-FROM `swoo-analytics-bq.derived_data.ua_app_derived_data_v3`
+FROM `your-project-id.processed_db.ua_app_processed_db_v3`
 WHERE type IN ('FIRST_OPEN')
 GROUP BY 1,2) a
 CROSS JOIN (
-SELECT date FROM `swoo-analytics-bq.analytics_data.dates_refer`
+SELECT date FROM `your-project-id.app_analytics.dates_refer`
 WHERE date >= '2018-05-01' AND date <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
 GROUP BY 1) b
 WHERE a.date >= DATE_SUB(b.date, INTERVAL 6 DAY) AND a.date <= b.date
@@ -525,10 +525,10 @@ components_of_wau = components_of_wau.drop('index',axis = 1)
 
 components_of_wau.name = 'App_WAU'
 
-#full_table_id = 'derived_data.components_of_wau'
+#full_table_id = 'processed_db.components_of_wau'
 #components_of_wau.to_gbq(full_table_id, project_id=project_id, if_exists = 'replace')
 
-# dataset_ref = client.dataset('derived_data')
+# dataset_ref = client.dataset('processed_db')
 # table_ref = dataset_ref.table('App_WAU')
 # client.delete_table(table_ref)
 # print('Table {}:{} deleted.'.format(dataset_ref, table_ref))
@@ -550,10 +550,10 @@ q5 = client.query("""
 SELECT b.date as Date,body_name AS Game_Type, COUNT(DISTINCT device_channel) AS WAU 
 FROM (
 SELECT date,body_name,device_channel
-FROM `swoo-analytics-bq.derived_data.ua_game_derived_data_v3`
+FROM `your-project-id.processed_db.ua_game_processed_db_v3`
 GROUP BY 1,2,3) a
 CROSS JOIN (
-SELECT date FROM `swoo-analytics-bq.analytics_data.dates_refer`
+SELECT date FROM `your-project-id.app_analytics.dates_refer`
 WHERE date >= '2018-05-01' AND date <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
 GROUP BY 1) b
 WHERE a.date >= DATE_SUB(b.date, INTERVAL 6 DAY) AND a.date <= b.date
@@ -568,10 +568,10 @@ FROM (
 SELECT b.date as date,body_name,device_channel 
 FROM (
 SELECT date,body_name,device_channel
-FROM `swoo-analytics-bq.derived_data.ua_game_derived_data_v3`
+FROM `your-project-id.processed_db.ua_game_processed_db_v3`
 GROUP BY 1,2,3) a
 CROSS JOIN (
-SELECT date FROM `swoo-analytics-bq.analytics_data.dates_refer`
+SELECT date FROM `your-project-id.app_analytics.dates_refer`
 WHERE date >= '2018-05-01' AND date <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
 GROUP BY 1) b
 WHERE a.date >= DATE_SUB(b.date, INTERVAL 6 DAY) AND a.date <= b.date
@@ -580,10 +580,10 @@ JOIN (
 SELECT b.date as date,body_name,device_channel 
 FROM (
 SELECT date,body_name,device_channel
-FROM `swoo-analytics-bq.derived_data.ua_game_derived_data_v3`
+FROM `your-project-id.processed_db.ua_game_processed_db_v3`
 GROUP BY 1,2,3) a
 CROSS JOIN (
-SELECT date FROM `swoo-analytics-bq.analytics_data.dates_refer`
+SELECT date FROM `your-project-id.app_analytics.dates_refer`
 WHERE date >= '2018-05-01' AND date <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
 GROUP BY 1) b
 WHERE a.date >= DATE_SUB(b.date, INTERVAL 13 DAY) AND a.date <= DATE_SUB(b.date, INTERVAL 7 DAY)
@@ -598,10 +598,10 @@ q7 = client.query("""
 SELECT b.date as Date,body_name AS Game_Type, COUNT(DISTINCT a.device_channel) AS NewUsers 
 FROM (
 SELECT body_name,device_channel,MIN(date) as date
-FROM `swoo-analytics-bq.derived_data.ua_game_derived_data_v3`
+FROM `your-project-id.processed_db.ua_game_processed_db_v3`
 GROUP BY 1,2) a
 CROSS JOIN (
-SELECT date FROM `swoo-analytics-bq.analytics_data.dates_refer`
+SELECT date FROM `your-project-id.app_analytics.dates_refer`
 WHERE date >= '2018-05-01' AND date <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
 GROUP BY 1) b
 WHERE a.date >= DATE_SUB(b.date, INTERVAL 6 DAY) AND a.date <= b.date
@@ -618,7 +618,7 @@ game_wise_wau = game_wise_wau.drop('index',axis = 1)
 
 # game_wise_wau.name = 'Game_wise_WAU'
 
-# # dataset_ref = client.dataset('derived_data')
+# # dataset_ref = client.dataset('processed_db')
 # # table_ref = dataset_ref.table('Game_wise_WAU')
 # # client.delete_table(table_ref)
 # # print('Table {}:{} deleted.'.format(dataset_ref, table_ref))
@@ -684,16 +684,16 @@ del q5,q6,q7,game_wau
 q12 = client.query("""
 SELECT a.Date as Date,(b.NURR/a.NURR_D) as NURR FROM (
 SELECT Date,COUNT(DISTINCT device_channel) as NURR_D
-FROM `derived_data.App_UA_Retention_NURR` 
+FROM `processed_db.App_UA_Retention_NURR` 
 GROUP BY 1) a
 LEFT JOIN (
 SELECT a.Date as Date,COUNT(DISTINCT a.device_channel) as NURR FROM (
 SELECT Date,device_channel
-FROM `derived_data.App_UA_Retention_WAU` 
+FROM `processed_db.App_UA_Retention_WAU` 
 GROUP BY 1,2) a
 JOIN (
 SELECT Date,device_channel
-FROM `derived_data.App_UA_Retention_NURR` 
+FROM `processed_db.App_UA_Retention_NURR` 
 GROUP BY 1,2) b
 ON a.Date = b.Date AND a.device_channel = b.device_channel
 GROUP BY 1) b
@@ -705,16 +705,16 @@ app_nurr = q12.to_dataframe()
 q13 = client.query("""
 SELECT a.Date as Date,(b.CURR/a.CURR_D) as CURR FROM (
 SELECT Date,COUNT(DISTINCT device_channel) as CURR_D
-FROM `derived_data.App_UA_Retention_CURR` 
+FROM `processed_db.App_UA_Retention_CURR` 
 GROUP BY 1) a
 LEFT JOIN (
 SELECT a.Date as Date,COUNT(DISTINCT a.device_channel) as CURR FROM (
 SELECT Date,device_channel 
-FROM `derived_data.App_UA_Retention_WAU` 
+FROM `processed_db.App_UA_Retention_WAU` 
 GROUP BY 1,2) a
 JOIN (
 SELECT Date,device_channel 
-FROM `derived_data.App_UA_Retention_CURR` 
+FROM `processed_db.App_UA_Retention_CURR` 
 GROUP BY 1,2) b
 ON a.Date = b.Date AND a.device_channel = b.device_channel
 GROUP BY 1) b
@@ -728,16 +728,16 @@ SELECT a.Date as Date,(b.RURR/a.RURR_D) as RURR FROM (
 SELECT a.Date as Date,COUNT(DISTINCT a.device_channel) as RURR_D 
 FROM (
 SELECT Date,device_channel
-FROM `derived_data.App_UA_Retention_RURR`
+FROM `processed_db.App_UA_Retention_RURR`
 GROUP BY 1,2) a
 LEFT JOIN (
 SELECT Date,device_channel
-FROM `derived_data.App_UA_Retention_CURR`
+FROM `processed_db.App_UA_Retention_CURR`
 GROUP BY 1,2) b
 ON a.Date = b.Date AND a.device_channel = b.device_channel
 LEFT JOIN (
 SELECT Date,device_channel
-FROM `derived_data.App_UA_Retention_NURR`
+FROM `processed_db.App_UA_Retention_NURR`
 GROUP BY 1,2) c
 ON a.Date = c.Date AND a.device_channel = c.device_channel
 WHERE b.device_channel IS NULL AND c.device_channel IS NULL
@@ -746,22 +746,22 @@ LEFT JOIN (
 SELECT a.Date as Date,COUNT(DISTINCT a.device_channel) as RURR 
 FROM (
 SELECT Date,device_channel
-FROM `derived_data.App_UA_Retention_WAU`
+FROM `processed_db.App_UA_Retention_WAU`
 GROUP BY 1,2) a
 JOIN (
 SELECT a.Date as Date,a.device_channel as device_channel
 FROM (
 SELECT Date,device_channel
-FROM `derived_data.App_UA_Retention_RURR`
+FROM `processed_db.App_UA_Retention_RURR`
 GROUP BY 1,2) a
 LEFT JOIN (
 SELECT Date,device_channel 
-FROM `derived_data.App_UA_Retention_CURR`
+FROM `processed_db.App_UA_Retention_CURR`
 GROUP BY 1,2) b
 ON a.Date = b.Date AND a.device_channel = b.device_channel
 LEFT JOIN (
 SELECT Date,device_channel
-FROM `derived_data.App_UA_Retention_NURR`
+FROM `processed_db.App_UA_Retention_NURR`
 GROUP BY 1,2) c
 ON a.Date = c.Date AND a.device_channel = c.device_channel
 WHERE b.device_channel IS NULL AND c.device_channel IS NULL
@@ -779,10 +779,10 @@ FROM (
 SELECT b.date as Date,device_channel --COUNT(DISTINCT developer_identity) as WAU 
 FROM (
 SELECT date,device_channel
-FROM `swoo-analytics-bq.derived_data.ua_app_derived_data_v3` 
+FROM `your-project-id.processed_db.ua_app_processed_db_v3` 
 GROUP BY 1,2) a
 CROSS JOIN (
-SELECT date FROM `swoo-analytics-bq.analytics_data.dates_refer`
+SELECT date FROM `your-project-id.app_analytics.dates_refer`
 WHERE date >= '2018-05-01' AND date <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
 GROUP BY 1) b
 WHERE a.date >= DATE_SUB(b.date, INTERVAL 6 DAY) AND a.date <= b.date
@@ -791,10 +791,10 @@ LEFT JOIN (
 SELECT b.date as Date,device_channel --COUNT(DISTINCT developer_identity) as WAU 
 FROM (
 SELECT date,device_channel
-FROM `swoo-analytics-bq.derived_data.ua_app_derived_data_v3` 
+FROM `your-project-id.processed_db.ua_app_processed_db_v3` 
 GROUP BY 1,2) a
 CROSS JOIN (
-SELECT date FROM `swoo-analytics-bq.analytics_data.dates_refer`
+SELECT date FROM `your-project-id.app_analytics.dates_refer`
 WHERE date >= '2018-05-01' AND date <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
 GROUP BY 1) b
 WHERE a.date >= DATE_SUB(b.date, INTERVAL 13 DAY) AND a.date <= DATE_SUB(b.date, INTERVAL 7 DAY)
@@ -814,7 +814,7 @@ app_retention = app_retention.drop('index',axis = 1)
 
 app_retention.name = 'App_UA_Retention'
 
-# dataset_ref = client.dataset('derived_data')
+# dataset_ref = client.dataset('processed_db')
 # table_ref = dataset_ref.table('App_UA_Retention')
 # client.delete_table(table_ref)
 # print('Table {}:{} deleted.'.format(dataset_ref, table_ref))
@@ -835,16 +835,16 @@ del q12,q13,q14,q15
 q8 = client.query("""
 SELECT a.Date as Date,a.body_name as body_name,(b.NURR/a.NURR_D) as NURR FROM (
 SELECT Date,body_name,COUNT(DISTINCT device_channel) as NURR_D
-FROM `derived_data.Game_wise_UA_Retention_NURR` 
+FROM `processed_db.Game_wise_UA_Retention_NURR` 
 GROUP BY 1,2) a
 LEFT JOIN (
 SELECT a.Date as Date,a.body_name as body_name,COUNT(DISTINCT a.device_channel) as NURR FROM (
 SELECT Date,body_name,device_channel
-FROM `derived_data.Game_wise_UA_Retention_WAU` 
+FROM `processed_db.Game_wise_UA_Retention_WAU` 
 GROUP BY 1,2,3) a
 JOIN (
 SELECT Date,body_name,device_channel
-FROM `derived_data.Game_wise_UA_Retention_NURR` 
+FROM `processed_db.Game_wise_UA_Retention_NURR` 
 GROUP BY 1,2,3) b
 ON a.Date = b.Date AND a.body_name = b.body_name AND a.device_channel = b.device_channel
 GROUP BY 1,2) b
@@ -856,16 +856,16 @@ game_wise_nurr = q8.to_dataframe()
 q9 = client.query("""
 SELECT a.Date as Date,a.body_name as body_name,(b.CURR/a.CURR_D) as CURR FROM (
 SELECT Date,body_name,COUNT(DISTINCT device_channel) as CURR_D
-FROM `derived_data.Game_wise_UA_Retention_CURR` 
+FROM `processed_db.Game_wise_UA_Retention_CURR` 
 GROUP BY 1,2) a
 LEFT JOIN (
 SELECT a.Date as Date,a.body_name as body_name,COUNT(DISTINCT a.device_channel) as CURR FROM (
 SELECT Date,body_name,device_channel 
-FROM `derived_data.Game_wise_UA_Retention_WAU` 
+FROM `processed_db.Game_wise_UA_Retention_WAU` 
 GROUP BY 1,2,3) a
 JOIN (
 SELECT Date,body_name,device_channel 
-FROM `derived_data.Game_wise_UA_Retention_CURR` 
+FROM `processed_db.Game_wise_UA_Retention_CURR` 
 GROUP BY 1,2,3) b
 ON a.Date = b.Date AND a.body_name = b.body_name AND a.device_channel = b.device_channel
 GROUP BY 1,2) b
@@ -879,16 +879,16 @@ SELECT a.Date as Date,a.body_name as body_name,(b.RURR/a.RURR_D) as RURR FROM (
 SELECT a.Date as Date,a.body_name as body_name,COUNT(DISTINCT a.device_channel) as RURR_D 
 FROM (
 SELECT Date,body_name,device_channel
-FROM `derived_data.Game_wise_UA_Retention_RURR`
+FROM `processed_db.Game_wise_UA_Retention_RURR`
 GROUP BY 1,2,3) a
 LEFT JOIN (
 SELECT Date,body_name,device_channel
-FROM `derived_data.Game_wise_UA_Retention_CURR`
+FROM `processed_db.Game_wise_UA_Retention_CURR`
 GROUP BY 1,2,3) b
 ON a.Date = b.Date AND a.body_name = b.body_name AND a.device_channel = b.device_channel
 LEFT JOIN (
 SELECT Date,body_name,device_channel
-FROM `derived_data.Game_wise_UA_Retention_NURR`
+FROM `processed_db.Game_wise_UA_Retention_NURR`
 GROUP BY 1,2,3) c
 ON a.Date = c.Date AND a.body_name = c.body_name AND a.device_channel = c.device_channel
 WHERE b.device_channel IS NULL AND c.device_channel IS NULL
@@ -897,22 +897,22 @@ LEFT JOIN (
 SELECT a.Date as Date,a.body_name as body_name,COUNT(DISTINCT a.device_channel) as RURR 
 FROM (
 SELECT Date,body_name,device_channel
-FROM `derived_data.Game_wise_UA_Retention_WAU`
+FROM `processed_db.Game_wise_UA_Retention_WAU`
 GROUP BY 1,2,3) a
 JOIN (
 SELECT a.Date as Date,a.body_name as body_name,a.device_channel as device_channel
 FROM (
 SELECT Date,body_name,device_channel
-FROM `derived_data.Game_wise_UA_Retention_RURR`
+FROM `processed_db.Game_wise_UA_Retention_RURR`
 GROUP BY 1,2,3) a
 LEFT JOIN (
 SELECT Date,body_name,device_channel 
-FROM `derived_data.Game_wise_UA_Retention_CURR`
+FROM `processed_db.Game_wise_UA_Retention_CURR`
 GROUP BY 1,2,3) b
 ON a.Date = b.Date AND a.body_name = b.body_name AND a.device_channel = b.device_channel
 LEFT JOIN (
 SELECT Date,body_name,device_channel
-FROM `derived_data.Game_wise_UA_Retention_NURR`
+FROM `processed_db.Game_wise_UA_Retention_NURR`
 GROUP BY 1,2,3) c
 ON a.Date = c.Date AND a.body_name = c.body_name AND a.device_channel = c.device_channel
 WHERE b.device_channel IS NULL AND c.device_channel IS NULL
@@ -930,10 +930,10 @@ FROM (
 SELECT b.date as Date,body_name,device_channel --COUNT(DISTINCT developer_identity) as WAU 
 FROM (
 SELECT date,body_name,device_channel
-FROM `swoo-analytics-bq.derived_data.ua_game_derived_data_v3` 
+FROM `your-project-id.processed_db.ua_game_processed_db_v3` 
 GROUP BY 1,2,3) a
 CROSS JOIN (
-SELECT date FROM `swoo-analytics-bq.analytics_data.dates_refer`
+SELECT date FROM `your-project-id.app_analytics.dates_refer`
 WHERE date >= '2018-05-01' AND date <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
 GROUP BY 1) b
 WHERE a.date >= DATE_SUB(b.date, INTERVAL 6 DAY) AND a.date <= b.date
@@ -942,10 +942,10 @@ LEFT JOIN (
 SELECT b.date as Date,body_name,device_channel --COUNT(DISTINCT developer_identity) as WAU 
 FROM (
 SELECT date,body_name,device_channel
-FROM `swoo-analytics-bq.derived_data.ua_game_derived_data_v3` 
+FROM `your-project-id.processed_db.ua_game_processed_db_v3` 
 GROUP BY 1,2,3) a
 CROSS JOIN (
-SELECT date FROM `swoo-analytics-bq.analytics_data.dates_refer`
+SELECT date FROM `your-project-id.app_analytics.dates_refer`
 WHERE date >= '2018-05-01' AND date <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
 GROUP BY 1) b
 WHERE a.date >= DATE_SUB(b.date, INTERVAL 13 DAY) AND a.date <= DATE_SUB(b.date, INTERVAL 7 DAY)
@@ -965,7 +965,7 @@ game_wise_retention = game_wise_retention.drop('index',axis = 1)
 
 # game_wise_retention.name = 'Game_wise_UA_Retention'
 
-# dataset_ref = client.dataset('derived_data')
+# dataset_ref = client.dataset('processed_db')
 # table_ref = dataset_ref.table('Game_wise_UA_Retention')
 # client.delete_table(table_ref)
 # print('Table {}:{} deleted.'.format(dataset_ref, table_ref))
@@ -1030,7 +1030,7 @@ del q8,q9,q10,q11,game_retention
 ## Daily_new_installs
 q18 = client.query("""
 SELECT Date,MAX(DAU) as New_Installs
-FROM `swoo-analytics-bq.daily_dashboard.ua_user_first_opened` 
+FROM `your-project-id.reporting_db.ua_user_first_opened` 
 GROUP BY 1
 ORDER BY 1
 """)
@@ -1055,7 +1055,7 @@ del q18
 ## Install_retention
 q19 = client.query("""
 SELECT *
-FROM `swoo-analytics-bq.daily_dashboard.ua_retention`
+FROM `your-project-id.reporting_db.ua_retention`
 ORDER BY 1 LIMIT 2000
 """)
 install_retention = q19.to_dataframe()
@@ -1081,7 +1081,7 @@ q20 = client.query("""
 SELECT week,x_times_opened,COUNT(DISTINCT user_id) AS users
 FROM (
 SELECT EXTRACT(WEEK(MONDAY) FROM date) AS week, device_channel AS user_id,COUNT(DISTINCT date) AS x_times_opened
-FROM `swoo-analytics-bq.derived_data.ua_app_derived_data_v3`
+FROM `your-project-id.processed_db.ua_app_processed_db_v3`
 WHERE date >= DATE_SUB(CURRENT_DATE(), INTERVAL 31 DAY) AND date < CURRENT_DATE()
 AND type IN ('OPEN','FIRST_OPEN')
 GROUP BY 1,2)
@@ -1110,7 +1110,7 @@ q21 = client.query("""
 SELECT week,x_times_games_played,COUNT(DISTINCT user_id) AS users
 FROM (
 SELECT EXTRACT(WEEK(MONDAY) FROM date) AS week, device_channel AS user_id,COUNT(DISTINCT date) AS x_times_games_played
-FROM `swoo-analytics-bq.derived_data.ua_game_derived_data_v3`
+FROM `your-project-id.processed_db.ua_game_processed_db_v3`
 WHERE date >= DATE_SUB(CURRENT_DATE(), INTERVAL 31 DAY) AND date < CURRENT_DATE()
 GROUP BY 1,2)
 GROUP BY 1,2
@@ -1136,7 +1136,7 @@ del q21
 ## Overall_session_time_per_day
 q22 = client.query("""
 SELECT date as Date,`range` as decile,MAX(users) as users,MAX(avg_session_length) as avg_session_length
-FROM `swoo-analytics-bq.daily_dashboard.ua_user_session_decile` 
+FROM `your-project-id.reporting_db.ua_user_session_decile` 
 GROUP BY 1,2
 ORDER BY 1,2
 """)
@@ -1161,7 +1161,7 @@ FROM (
 SELECT date,device_channel,body_name,COUNT(times) as x_games_played 
 FROM (
 SELECT DATE(occurred) as date,device_channel,body_name,EXTRACT(HOUR FROM occurred) as times
-FROM `swoo-analytics-bq.analytics_data.ua_derived_data_v3` 
+FROM `your-project-id.app_analytics.ua_processed_db_v3` 
 WHERE DATE(occurred) >= """
 s2=" AND DATE(occurred) <= "
 s3="""
@@ -1242,7 +1242,7 @@ FROM (
 SELECT date,device_channel,COUNT(times) as x_games_played 
 FROM (
 SELECT DATE(occurred) as date,device_channel,EXTRACT(HOUR FROM occurred) as times
-FROM `swoo-analytics-bq.analytics_data.ua_derived_data_v3` 
+FROM `your-project-id.app_analytics.ua_processed_db_v3` 
 WHERE DATE(occurred) >= """
 s2=" AND DATE(occurred) <= "
 s3="""
@@ -1274,7 +1274,7 @@ del q17,s1,s2,s3
 ## Game_players_by_shows
 s1="""
 SELECT DATE(occurred) AS date,body_name,EXTRACT(HOUR FROM occurred) AS hour,COUNT(DISTINCT(device_channel)) AS users
-FROM `swoo-analytics-bq.analytics_data.ua_derived_data_v3`
+FROM `your-project-id.app_analytics.ua_processed_db_v3`
 WHERE DATE(occurred) >= """
 s2=" AND DATE(occurred) <= "
 s3="""
@@ -1300,7 +1300,7 @@ del q23,s1,s2,s3
 ###******************************* Removing_the_created_temporary_tables
 ##################################################################################################################################
 
-dataset_id = 'derived_data'
+dataset_id = 'processed_db'
 # Set the destination table
 table_ref = client.dataset(dataset_id).table('App_UA_Retention_WAU')
 client.delete_table(table_ref)
@@ -1341,7 +1341,7 @@ print('Follwing table {} has been deleted.'.format(table_ref.path))
 ## p2p_app_dau_and_contest_players
 q24 = client.query("""
 SELECT date,Pay2Play_App_DAU as p2p_app_dau,Pay2Play_GamePlayers as contest_players
-FROM `swoo-analytics-bq.daily_dashboard.ua_p2p_funnel_7_0_0`
+FROM `your-project-id.reporting_db.ua_p2p_funnel_7_0_0`
 GROUP BY 1,2,3
 ORDER BY 1
 """)
@@ -1361,7 +1361,7 @@ del q24
 
 q25 = client.query("""
 SELECT *
-FROM `swoo-analytics-bq.daily_dashboard.ua_p2p_contest_players` 
+FROM `your-project-id.reporting_db.ua_p2p_contest_players` 
 ORDER BY 1,2
 """)
 data = q25.to_dataframe()

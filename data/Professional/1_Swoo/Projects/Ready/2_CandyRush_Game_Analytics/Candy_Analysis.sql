@@ -1,7 +1,7 @@
 ## Candy Players By shows
 
 SELECT DATE(occurred) AS DATE,extract(hour FROM occurred) AS show_time,count(DISTINCT device_channel) as users 
-FROM `analytics_data.urban_airship_v2` 
+FROM `app_analytics.urban_airship_v2` 
 WHERE DATE(occurred) >= DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY) 
 AND body_name IN ("candyrush_started_playing") 
 GROUP BY 1,2 
@@ -12,12 +12,12 @@ HAVING users >= 500
 
 WITH A AS(
 SELECT game_id,count(DISTINCT user_id) AS users 
-FROM `swoo_gaming_service.user_game_statistics` 
+FROM `gaming_service_db.user_game_statistics` 
 WHERE games_won = 1 AND game_type_id = "CandyRush"
 GROUP BY 1)
 ,B AS(
 SELECT DATE(start_time) AS DATE,game_id,title 
-FROM `swoo_gaming_service.game` 
+FROM `gaming_service_db.game` 
 WHERE is_deleted = 0 AND status_id IN (11,12) 
 AND game_type_id = "CandyRush" 
 GROUP BY 1,2,3  
@@ -30,7 +30,7 @@ LEFT JOIN A ON A.game_id = B.game_id
 ## Funnel Events for SwooperStar
 
 SELECT DATE,body_name,COUNT(DISTINCT device_channel) AS users 
-FROM `analytics_data.ua_derived_data_v1` 
+FROM `app_analytics.ua_processed_db_v1` 
 WHERE DATE >= "2019-03-02" 
 AND lower(body_name) IN ("livegamestab_open","videostab_open","videoplayer_open") 
 GROUP BY 1,2
@@ -42,7 +42,7 @@ WITH A AS(
 SELECT CASE WHEN body_name  = "candyrush_started_playing" THEN occurred END AS candyrush_started_playing,
 CASE WHEN body_name  = "candyrushgame_statsboardshown" THEN occurred END AS candyrushgame_statsboardshown,
 device_channel,extract(hour FROM occurred) hour,DATE(occurred) AS DATE
-FROM `analytics_data.urban_airship_v2`
+FROM `app_analytics.urban_airship_v2`
 WHERE DATE(occurred) >= "2019-02-10"
 AND lower(body_name) IN ('candyrush_started_playing','candyrushgame_statsboardshown')
 GROUP BY 1,2,3,4,5 ORDER BY 5,3,1,2)
@@ -58,21 +58,21 @@ Select date,Round(SUM(Minutes)/60,0) AS Time_Hours,hour from C group by 1,3 havi
 
 WITH A AS(
 SELECT DATE(start_time) AS date,game_id,title 
-FROM `swoo_gaming_service.game` 
+FROM `gaming_service_db.game` 
 WHERE DATE(start_time) = "2019-02-01"
 AND is_deleted = 0 
 AND (country_codes like '%IN%' OR country_codes like '%AE%')
 AND status_id IN (11,12) group by 1,2,3)
 ,B AS(
 SELECT game_id,round_number,level_number
-FROM `swoo_gaming_service.candy_rush_round_detail` 
+FROM `gaming_service_db.candy_rush_round_detail` 
 GROUP BY 1,2,3)
 ,C as(
 Select date,title,round_number,level_number,B.game_id from A left join B on A.game_id = B.game_id where B.game_id is not null order by 1,2,3,4
 )
 , D as
 (
-select device_channel,level_no,box_level,points,game_id from `analytics_data.urban_airship_v2` where date(occurred) = "2019-02-01" 
+select device_channel,level_no,box_level,points,game_id from `app_analytics.urban_airship_v2` where date(occurred) = "2019-02-01" 
 and body_name = 'candyrushgame_statsboardshown' group by 1,2,3,4,5
 )
 , E as
@@ -91,13 +91,13 @@ CAST((CAST(points as int64)-CAST(Previous_Round_Points as int64)) AS INT64) as p
 
 With A as
 (
-select date(occurred) as date,extract(hour from occurred) as hour,game_id,user_id,device_channel from `analytics_data.urban_airship_v2` 
+select date(occurred) as date,extract(hour from occurred) as hour,game_id,user_id,device_channel from `app_analytics.urban_airship_v2` 
 where lower(body_name) in ("candyrush_started_playing")
 and date(occurred) >= "2019-02-22" group by 1,2,3,4,5
 )
 , B as
 (
-select date(start_time) as date,extract(hour from start_time)as hour,game_id,title,game_type_id from `swoo_gaming_service.game` 
+select date(start_time) as date,extract(hour from start_time)as hour,game_id,title,game_type_id from `gaming_service_db.game` 
 where date(start_time) >= "2019-02-22" and date(start_time) <= "2019-02-25" and game_type_id = "CandyRush" order by 1,2
 )
 , C as
