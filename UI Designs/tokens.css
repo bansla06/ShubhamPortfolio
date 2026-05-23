@@ -1,0 +1,354 @@
+/* ==========================================================================
+   Palette — Tira Beauty Design System tokens
+   Source of truth: colors and sizing ripped from Tira's Figma files
+   (PDP.fig, My Bag.fig and their desktop variants).
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   TYPOGRAPHY — PP Object Sans is Tira's brand face (Pangram Pangram).
+   Full family is bundled in /fonts with 8 weights: Thin 100, Light 300,
+   Regular 400, Medium 500, Semibold 600, Bold 700, Heavy 800, Black 900.
+   Paths are relative to this stylesheet (colors_and_type.css at project root).
+   -------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: "PP Object Sans";
+  src: local("PP Object Sans Thin"), local("PPObjectSans-Thin"),
+       url("fonts/PPObjectSans-Thin.otf") format("opentype"),
+       url("fonts/PPObjectSans-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PP Object Sans";
+  src: local("PP Object Sans Light"), local("PPObjectSans-Light"),
+       url("fonts/PPObjectSans-Light.otf") format("opentype"),
+       url("fonts/PPObjectSans-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PP Object Sans";
+  src: local("PP Object Sans"), local("PPObjectSans-Regular"),
+       url("fonts/PPObjectSans-Regular.otf") format("opentype"),
+       url("fonts/PPObjectSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PP Object Sans";
+  src: local("PP Object Sans Medium"), local("PPObjectSans-Medium"),
+       url("fonts/PPObjectSans-Medium.otf") format("opentype"),
+       url("fonts/PPObjectSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PP Object Sans";
+  src: local("PP Object Sans Semibold"), local("PPObjectSans-Semibold"),
+       url("fonts/PPObjectSans-Semibold.otf") format("opentype"),
+       url("fonts/PPObjectSans-Semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PP Object Sans";
+  src: local("PP Object Sans Bold"), local("PPObjectSans-Bold"),
+       url("fonts/PPObjectSans-Bold.otf") format("opentype"),
+       url("fonts/PPObjectSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PP Object Sans";
+  src: local("PP Object Sans Heavy"), local("PPObjectSans-Heavy"),
+       url("fonts/PPObjectSans-Heavy.otf") format("opentype"),
+       url("fonts/PPObjectSans-Heavy.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PP Object Sans";
+  src: local("PP Object Sans Black"), local("PPObjectSans-Black"),
+       url("fonts/PPObjectSans-Black.otf") format("opentype"),
+       url("fonts/PPObjectSans-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ----------------------------------------------------------------------
+     COLOR — raw palette
+     Frequency counts (left comment) come from the Figma extraction.
+     ---------------------------------------------------------------------- */
+
+  /* Neutrals — ink and paper */
+  --ink:            rgb(33, 26, 30);    /* 4134x — primary text / on-white */
+  --paper:          rgb(255, 255, 255); /* 2131x — page */
+  --surface-1:      rgb(247, 247, 247); /* 762x — cards, coupons, chips */
+  --surface-2:      rgb(244, 244, 244); /* tag bg (Best Price) */
+  --surface-3:      rgb(237, 237, 237); /* 1586x — hairline borders */
+  --surface-4:      rgb(238, 238, 238); /* outline-2 button border */
+  --surface-5:      rgb(229, 229, 229);
+  --surface-6:      rgb(217, 217, 217);
+  --surface-7:      rgb(208, 208, 208);
+  --surface-8:      rgb(196, 196, 196);
+  --ink-60:         rgb(121, 115, 119); /* 1263x — secondary text */
+  --ink-55:         rgb( 99,  94,  97); /* 74x   — tertiary text */
+  --ink-45:         rgb(144, 140, 142); /* 55x   — placeholder / metadata */
+  --ink-30:         rgb(175, 172, 174); /* 41x   — disabled text */
+  --black:          rgb(0, 0, 0);
+
+  /* Brand reds — the Tira coral / red system */
+  --tira-red:       rgb(241,  26,   0); /* 160x — Tira logo, brand red */
+  --tira-red-ink:   rgb( 95,  15,  14); /* 22x  — deep tira red, type on red */
+  --coral-600:      rgb(192,  70,  87); /* 76x  — darker coral, Tira Red tier */
+  --coral-550:      rgb(216,  98,  90); /* 23x  — shade swatch, Divine Red */
+  --coral-500:      rgb(227,  86,  89); /* 28x  — Tira Red primary */
+  --coral-450:      rgb(205,  86,  88); /* 47x  — secondary coral */
+  --coral-400:      rgb(206, 124, 109); /* 290x — SIGNATURE warm coral */
+  --coral-300:      rgb(200, 113, 120);
+  --coral-250:      rgb(220, 137, 138);
+  --coral-200:      rgb(231, 192, 185); /* 27x  — pink wash */
+  --coral-150:      rgb(248, 225, 217); /* 36x  — blush tint */
+  --coral-100:      rgb(252, 242, 239); /* 183x — background blush */
+
+  /* Lux accent — Tira Red tier depth */
+  --wine:           rgb( 52,  19,  12); /* 22x  — luxury background */
+  --wine-ink:       rgb( 95,  15,  14); /* deep wine for text */
+
+  /* Semantic */
+  --success:        rgb(  0, 137,  69); /* 167x — delivery, assured green */
+  --error:          rgb(241,  26,   0); /* shares brand red */
+
+  /* ----------------------------------------------------------------------
+     COLOR — semantic aliases (use these in components)
+     ---------------------------------------------------------------------- */
+
+  --fg-1: var(--ink);         /* headings, body */
+  --fg-2: var(--ink-60);      /* secondary */
+  --fg-3: var(--ink-45);      /* metadata */
+  --fg-disabled: var(--ink-30);
+  --fg-on-brand: var(--paper);
+
+  --bg-page: var(--paper);
+  --bg-1: var(--surface-1);    /* subtle fills */
+  --bg-2: var(--surface-2);    /* inline tags */
+  --bg-blush: var(--coral-100);/* brand-tinted wash */
+
+  --border-subtle:  var(--surface-3);
+  --border-default: var(--surface-4);
+  --border-strong:  var(--ink);
+
+  --accent-brand:       var(--tira-red);
+  --accent-brand-hover: var(--tira-red-ink);
+  --accent-coral:       var(--coral-400);
+  --accent-success:     var(--success);
+
+  /* Tira Red tier — override via [data-theme="red"] */
+  --lux-bg:     var(--paper);
+  --lux-ink:    var(--wine-ink);
+  --lux-accent: var(--coral-600);
+
+  /* ----------------------------------------------------------------------
+     TYPE — scale extracted from Figma usage
+     PP Object Sans: 14 (2276x), 12 (860x), 16 (293x), 18 (227x), 24, 10, 8
+     ---------------------------------------------------------------------- */
+
+  --ff-sans: "PP Object Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --ff-display: "PP Object Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* scale */
+  --fs-8:   8px;
+  --fs-10: 10px;
+  --fs-12: 12px;
+  --fs-14: 14px;
+  --fs-16: 16px;
+  --fs-18: 18px;
+  --fs-20: 20px;
+  --fs-24: 24px;
+  --fs-32: 32px;
+  --fs-40: 40px;
+  --fs-48: 48px;  /* display — used on Treats logotype at heavy weight */
+
+  --lh-tight:  1.0;
+  --lh-snug:   1.2;
+  --lh-body:   1.5;
+  --lh-loose:  1.6;
+
+  /* weights — full PP Object Sans family now available */
+  --fw-thin:     100;
+  --fw-light:    300;
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semi:     600;
+  --fw-bold:     700;
+  --fw-heavy:    800;
+  --fw-black:    900;
+
+  /* letter-spacing: Tira runs tight and clean */
+  --tracking-tight:  -0.01em;
+  --tracking-normal:  0em;
+  --tracking-caps:    0.08em;     /* used on BESTSELLER / tags */
+  --tracking-caps-loose: 0.16em;  /* used on TREATS logotype */
+
+  /* ----------------------------------------------------------------------
+     SPACING — pixel scale reflects Figma gutters (12 is king)
+     ---------------------------------------------------------------------- */
+  --sp-1:   2px;
+  --sp-2:   4px;
+  --sp-3:   6px;
+  --sp-4:   8px;
+  --sp-5:  10px;
+  --sp-6:  12px;   /* default page gutter on mobile (351/375) */
+  --sp-7:  16px;
+  --sp-8:  20px;
+  --sp-9:  24px;
+  --sp-10: 32px;
+  --sp-11: 40px;
+  --sp-12: 48px;
+  --sp-13: 64px;
+  --sp-14: 80px;
+
+  /* ----------------------------------------------------------------------
+     RADII — Tira uses tight corners (2, 4) plus a fully-rounded pill (24)
+     ---------------------------------------------------------------------- */
+  --r-xs:   2px;   /* tags, inline chips */
+  --r-sm:   4px;   /* coupon strip, shade quickselect */
+  --r-md:   5px;   /* size option containers */
+  --r-lg:   8px;
+  --r-xl:  12px;
+  --r-pill: 999px; /* buttons: all buttons are pills, radius 24 */
+  --r-full: 50%;   /* shade circles, avatars */
+
+  /* ----------------------------------------------------------------------
+     ELEVATION — Tira is flat. Shadows are used sparingly on lifted cards.
+     ---------------------------------------------------------------------- */
+  --shadow-1:  0 1px 2px rgba(33,26,30,0.04);
+  --shadow-2:  0 2px 8px rgba(33,26,30,0.06);
+  --shadow-3:  0 8px 24px rgba(33,26,30,0.08);
+  --shadow-toast: 0 12px 32px rgba(33,26,30,0.16);
+
+  /* ----------------------------------------------------------------------
+     MOTION — calm, editorial. No bouncing.
+     ---------------------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur: 200ms;
+  --dur-slow: 320ms;
+
+  /* ----------------------------------------------------------------------
+     LAYOUT — the device widths that actually exist in Figma
+     ---------------------------------------------------------------------- */
+  --viewport-mobile: 375px;
+  --viewport-desktop: 1440px;
+  --gutter-mobile: 12px;
+  --gutter-desktop: 80px;
+
+  /* max content width on desktop as seen in PDP frames (1280 content) */
+  --content-max: 1280px;
+}
+
+/* --------------------------------------------------------------------------
+   Tira Red luxury-tier theme
+   Apply via <div data-theme="red"> or <body data-theme="red">
+   -------------------------------------------------------------------------- */
+[data-theme="red"] {
+  --bg-page: var(--coral-100);
+  --bg-1: var(--paper);
+  --fg-1: var(--wine-ink);
+  --fg-2: rgba(95,15,14,0.72);
+  --accent-brand: var(--coral-600);
+  --accent-brand-hover: var(--wine-ink);
+  --border-subtle: rgba(95,15,14,0.14);
+  --tracking-normal: 0.01em;
+}
+
+/* --------------------------------------------------------------------------
+   Semantic HTML defaults — apply this file to the body for free tokens
+   -------------------------------------------------------------------------- */
+body {
+  font-family: var(--ff-sans);
+  font-size: var(--fs-14);
+  line-height: var(--lh-body);
+  color: var(--fg-1);
+  background: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, .t-display {
+  font-family: var(--ff-display);
+  font-size: var(--fs-32);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg-1);
+  margin: 0;
+}
+h2, .t-title {
+  font-size: var(--fs-24);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-tight);
+  margin: 0;
+}
+h3, .t-heading {
+  font-size: var(--fs-18);
+  font-weight: var(--fw-medium);
+  line-height: 1.33;
+  margin: 0;
+}
+h4, .t-subheading {
+  font-size: var(--fs-16);
+  font-weight: var(--fw-medium);
+  line-height: 1.5;
+  margin: 0;
+}
+.t-body {
+  font-size: var(--fs-14);
+  line-height: 18px;
+  color: var(--fg-1);
+}
+.t-body-sm {
+  font-size: var(--fs-12);
+  line-height: 18px;
+  color: var(--fg-2);
+}
+.t-meta {
+  font-size: var(--fs-10);
+  line-height: 16px;
+  color: var(--fg-3);
+}
+.t-tag {
+  font-size: var(--fs-8);
+  line-height: 12px;
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--fg-1);
+}
+.t-price {
+  font-size: var(--fs-16);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-tight);
+}
+.t-price-strike {
+  font-size: var(--fs-12);
+  color: var(--ink-45);
+  text-decoration: line-through;
+}
+.t-discount {
+  font-size: var(--fs-12);
+  color: var(--success);
+  font-weight: var(--fw-medium);
+}

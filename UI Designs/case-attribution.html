@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Attribution model at Tira — Case study · Shubham Bansla</title>
+<link rel="stylesheet" href="tokens.css" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body data-palette="default" data-density="default">
+
+<nav class="nav">
+  <div class="wrap nav__inner">
+    <a href="index.html" class="nav__brand">
+      <span class="dot"></span>
+      Shubham Bansla
+      <small>Product analyst</small>
+    </a>
+    <div class="nav__links">
+      <a href="index.html#about">About</a>
+      <a href="index.html#academics">Academics</a>
+      <a href="index.html#experience">Experience</a>
+      <a href="index.html#work">Work</a>
+      <a href="index.html#achievements">Achievements</a>
+    </div>
+    <a href="index.html#contact" class="nav__cta">Get in touch</a>
+  </div>
+</nav>
+
+<main class="case">
+  <header class="case__hero">
+    <div class="wrap">
+      <a href="index.html#work" class="case__back">← Back to selected work</a>
+      <div class="section__num"><span></span>Case 02 · Attribution</div>
+      <h1 class="case__title">An attribution model<br>the whole org actually uses.</h1>
+      <p class="case__lede">
+        A SQL-native multi-touch attribution model in BigQuery that serves
+        Marketing, Branding and Strategy from a single source of truth —
+        and replaced three conflicting spreadsheets.
+      </p>
+      <div class="case__meta">
+        <div><div class="k">Company</div><div class="v">Jio Beauty — Tira</div></div>
+        <div><div class="k">Role</div><div class="v">Owner, attribution layer</div></div>
+        <div><div class="k">Timeline</div><div class="v">2023</div></div>
+        <div><div class="k">Consumers</div><div class="v">Marketing · Branding · Strategy</div></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="case__cover">
+      <svg class="cover-svg" viewBox="0 0 1200 540" preserveAspectRatio="none">
+        <rect width="1200" height="540" fill="#FFFFFF"/>
+        <g stroke="#211A1E" stroke-width="1.5" fill="none">
+          <circle cx="120" cy="140" r="28"/>
+          <circle cx="120" cy="270" r="28"/>
+          <circle cx="120" cy="400" r="28"/>
+          <circle cx="600" cy="180" r="28"/>
+          <circle cx="600" cy="360" r="28"/>
+          <circle cx="1080" cy="270" r="40" fill="#F11A00" stroke="#F11A00"/>
+          <path d="M148 140 C 360 140, 460 180, 572 180"/>
+          <path d="M148 270 C 360 270, 460 270, 572 270" stroke-dasharray="4 4"/>
+          <path d="M148 400 C 360 400, 460 360, 572 360"/>
+          <path d="M628 180 C 800 180, 920 240, 1040 270"/>
+          <path d="M628 360 C 800 360, 920 300, 1040 270"/>
+        </g>
+        <g fill="#211A1E" font-family="PP Object Sans" font-weight="500" font-size="14" letter-spacing="0.12em">
+          <text x="80"  y="80">SOURCES</text>
+          <text x="560" y="100">TOUCHPOINTS</text>
+          <text x="1020" y="200">ORDER</text>
+        </g>
+        <g fill="#211A1E" font-family="PP Object Sans" font-weight="400" font-size="14">
+          <text x="80"  y="145">Paid social</text>
+          <text x="80"  y="275">Direct</text>
+          <text x="80"  y="405">Email</text>
+          <text x="560" y="183">PLP visit</text>
+          <text x="560" y="363">Add to bag</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="case__body">
+      <div class="case__sidenote">
+        01 · The problem<br>02 · The shape<br>03 · The model<br>04 · Adoption<br>05 · Outcome<br>06 · Lessons
+      </div>
+      <div>
+        <div class="case__section">
+          <h2>The problem.</h2>
+          <p>
+            Tira had three different attribution stories in circulation.
+            Marketing read paid performance one way, Branding read another,
+            and Strategy maintained a quarterly spreadsheet that didn't
+            quite reconcile to either. Each was defensible on its own; none
+            were reconcilable across teams. Every meeting started with a
+            ten-minute argument about whose number was right.
+          </p>
+        </div>
+
+        <div class="case__section">
+          <h2>The shape.</h2>
+          <p>
+            Two principles. <b>One:</b> everyone reads attribution from one
+            place. <b>Two:</b> that place is auditable end-to-end — every
+            order can be traced back to the touchpoints it credits and the
+            rules it followed.
+          </p>
+        </div>
+
+        <div class="case__section">
+          <h2>The model.</h2>
+          <ul>
+            <li><b>Touchpoint stitching in BigQuery.</b><span>User sessions joined to order events on a 30-day attribution window. Built entirely in SQL — no proprietary tool to lock us in.</span></li>
+            <li><b>A position-based credit rule.</b><span>40% first-touch, 40% last-touch, 20% distributed across the middle. Documented, defended, and configurable for special analyses.</span></li>
+            <li><b>Channel-level overrides.</b><span>Branding campaigns get a longer view-through window; performance campaigns don't. The rules live in a config table, not in code.</span></li>
+            <li><b>An audit table.</b><span>Every order writes out its touchpoint chain and the credit split, so anyone can sanity-check a number without re-running the pipeline.</span></li>
+          </ul>
+        </div>
+
+        <div class="case__section">
+          <h2>Adoption.</h2>
+          <p>
+            The model itself was the easy part. The harder work was getting
+            three teams who'd been using different numbers for years to
+            agree to use one. I spent four weeks running open sessions —
+            walking through the SQL, the rules, the trade-offs — and
+            shipping side-by-side reconciliations against each team's
+            existing report. The model wasn't adopted because it was
+            "better"; it was adopted because it could explain itself.
+          </p>
+        </div>
+
+        <div class="case__section">
+          <h2>Outcome.</h2>
+          <div class="case__metrics">
+            <div class="metric"><span class="num">1</span><span class="lbl">Source of truth across 3 teams</span></div>
+            <div class="metric"><span class="num">−6<sup>days</sup></span><span class="lbl">Monthly reporting cycle</span></div>
+            <div class="metric"><span class="num">100<sup>%</sup></span><span class="lbl">Orders with auditable chain</span></div>
+          </div>
+          <p>
+            Six months in, the attribution layer is the default reference in
+            quarterly business reviews. The same model is now extended for
+            the Tira Treats loyalty programme — touchpoint logic ported in
+            an afternoon because the schema was designed for it.
+          </p>
+        </div>
+
+        <div class="case__section">
+          <h2>Lessons.</h2>
+          <p>
+            An attribution model is only as good as the conversations it
+            ends. The hardest weeks weren't the modelling — they were
+            sitting in rooms with team leads, defending why a particular
+            credit rule was a deliberate choice and not a guess. Once the
+            rules were legible, the politics quietened down. The number
+            became the boring part, which is the goal.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="next-case">
+      <div>
+        <div class="label">Next case</div>
+        <a href="case-ott-dashboard.html">Post-campaign OTT insights, automated →</a>
+      </div>
+      <a href="index.html#work" class="case__back">All work</a>
+    </div>
+  </div>
+</main>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2 class="contact__big">
+      Curious about<br>
+      <em>your attribution stack?</em><br>
+      <a href="mailto:Shubhambansla95@gmail.com">Shubhambansla95@gmail.com</a>
+    </h2>
+    <div class="contact__foot">
+      <div>© 2026 Shubham Bansla</div>
+      <div>Made with intent, in Gurugram.</div>
+    </div>
+  </div>
+</section>
+
+<script>
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-visible'); io.unobserve(en.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
