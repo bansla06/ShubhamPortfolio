@@ -33,6 +33,9 @@ jobs:
         run: npm run build
         working-directory: portfolio
 
+      - name: Add .nojekyll
+        run: touch portfolio/out/.nojekyll
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: portfolio/out
