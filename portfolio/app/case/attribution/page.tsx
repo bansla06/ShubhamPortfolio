@@ -26,7 +26,7 @@ export default function CaseAttribution() {
       <main className="case">
         <header className="case__hero">
           <div className="wrap">
-            <Link href="/#work" className="case__back">← Back to selected work</Link>
+            <Link href="/work" className="case__back">← Back to selected work</Link>
             <div className="section__num"><span></span>Case 02 · Attribution</div>
             <h1 className="case__title">An attribution model<br />the whole org actually uses.</h1>
             <p className="case__lede">
@@ -46,26 +46,26 @@ export default function CaseAttribution() {
         <div className="wrap">
           <div className="case__cover">
             <svg className="cover-svg" viewBox="0 0 1200 540" preserveAspectRatio="none">
-              <rect width="1200" height="540" fill="#FFFFFF" />
-              <g stroke="#211A1E" strokeWidth="1.5" fill="none">
+              <rect width="1200" height="540" fill="#11141C" />
+              <g stroke="#E0B973" strokeWidth="1.5" fill="none" opacity="0.7">
                 <circle cx="120" cy="140" r="28" />
                 <circle cx="120" cy="270" r="28" />
                 <circle cx="120" cy="400" r="28" />
                 <circle cx="600" cy="180" r="28" />
                 <circle cx="600" cy="360" r="28" />
-                <circle cx="1080" cy="270" r="40" fill="#F11A00" stroke="#F11A00" />
+                <circle cx="1080" cy="270" r="40" fill="#E0B973" stroke="#E0B973" />
                 <path d="M148 140 C 360 140, 460 180, 572 180" />
                 <path d="M148 270 C 360 270, 460 270, 572 270" strokeDasharray="4 4" />
                 <path d="M148 400 C 360 400, 460 360, 572 360" />
                 <path d="M628 180 C 800 180, 920 240, 1040 270" />
                 <path d="M628 360 C 800 360, 920 300, 1040 270" />
               </g>
-              <g fill="#211A1E" fontFamily="PP Object Sans" fontWeight="500" fontSize="14" letterSpacing="0.12em">
+              <g fill="#9CA3B4" fontFamily="PP Object Sans" fontWeight="500" fontSize="14" letterSpacing="0.12em">
                 <text x="80"  y="80">SOURCES</text>
                 <text x="560" y="100">TOUCHPOINTS</text>
                 <text x="1020" y="200">ORDER</text>
               </g>
-              <g fill="#211A1E" fontFamily="PP Object Sans" fontWeight="400" fontSize="14">
+              <g fill="#ECEEF3" fontFamily="PP Object Sans" fontWeight="400" fontSize="14">
                 <text x="80"  y="145">Paid social</text>
                 <text x="80"  y="275">Direct</text>
                 <text x="80"  y="405">Email</text>
@@ -159,7 +159,7 @@ export default function CaseAttribution() {
               <div className="label">Next case</div>
               <Link href="/case/ott-dashboard">Post-campaign OTT insights, automated →</Link>
             </div>
-            <Link href="/#work" className="case__back">All work</Link>
+            <Link href="/work" className="case__back">All work</Link>
           </div>
         </div>
       </main>

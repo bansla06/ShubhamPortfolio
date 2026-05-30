@@ -26,7 +26,7 @@ export default function CaseRelevancy() {
       <main className="case">
         <header className="case__hero">
           <div className="wrap">
-            <Link href="/#work" className="case__back">← Back to selected work</Link>
+            <Link href="/work" className="case__back">← Back to selected work</Link>
             <div className="section__num"><span></span>Case 01 · Ranking</div>
             <h1 className="case__title">A relevancy algorithm<br />for PLP product ranking.</h1>
             <p className="case__lede">
@@ -49,25 +49,25 @@ export default function CaseRelevancy() {
             <svg className="cover-svg" viewBox="0 0 1200 540" preserveAspectRatio="none">
               <defs>
                 <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stopColor="#FCF2EF" />
-                  <stop offset="1" stopColor="#F8E1D9" />
+                  <stop offset="0" stopColor="#161A24" />
+                  <stop offset="1" stopColor="#0E1118" />
                 </linearGradient>
               </defs>
               <rect width="1200" height="540" fill="url(#bg)" />
-              <g stroke="#211A1E" strokeWidth="1.5" fill="#FFF">
+              <g stroke="#E0B973" strokeWidth="1.5" fill="none" opacity="0.5">
                 <rect x="80"  y="200" width="160" height="240" />
                 <rect x="260" y="200" width="160" height="240" />
-                <rect x="440" y="200" width="160" height="240" fill="#F11A00" stroke="#F11A00" />
+                <rect x="440" y="200" width="160" height="240" fill="#E0B973" stroke="#E0B973" opacity="1" />
                 <rect x="620" y="200" width="160" height="240" />
                 <rect x="800" y="200" width="160" height="240" />
                 <rect x="980" y="200" width="160" height="240" />
               </g>
-              <g fill="#FFF" fontFamily="PP Object Sans" fontWeight="500" fontSize="14" letterSpacing="0.14em">
+              <g fill="#0B0E14" fontFamily="PP Object Sans" fontWeight="500" fontSize="14" letterSpacing="0.14em">
                 <text x="475" y="340">RANK #1</text>
                 <text x="475" y="360">RELEVANCY 0.94</text>
               </g>
-              <text x="80" y="100" fill="#211A1E" fontFamily="PP Object Sans" fontWeight="500" fontSize="64" letterSpacing="-2">PLP relevancy</text>
-              <text x="80" y="140" fill="#211A1E" fontFamily="PP Object Sans" fontWeight="300" fontSize="22">Ranking that earns its top slot · Tira PLP grid · 2024</text>
+              <text x="80" y="100" fill="#ECEEF3" fontFamily="PP Object Sans" fontWeight="500" fontSize="64" letterSpacing="-2">PLP relevancy</text>
+              <text x="80" y="140" fill="#9CA3B4" fontFamily="PP Object Sans" fontWeight="300" fontSize="22">Ranking that earns its top slot · Tira PLP grid · 2024</text>
             </svg>
           </div>
 
@@ -176,7 +176,7 @@ export default function CaseRelevancy() {
               <div className="label">Next case</div>
               <Link href="/case/attribution">An attribution model the whole org uses →</Link>
             </div>
-            <Link href="/#work" className="case__back">All work</Link>
+            <Link href="/work" className="case__back">All work</Link>
           </div>
         </div>
       </main>

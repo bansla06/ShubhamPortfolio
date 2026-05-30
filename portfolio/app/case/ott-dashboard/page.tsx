@@ -26,7 +26,7 @@ export default function CaseOttDashboard() {
       <main className="case">
         <header className="case__hero">
           <div className="wrap">
-            <Link href="/#work" className="case__back">← Back to selected work</Link>
+            <Link href="/work" className="case__back">← Back to selected work</Link>
             <div className="section__num"><span></span>Case 03 · Dashboards</div>
             <h1 className="case__title">Post-campaign OTT<br />insights, automated.</h1>
             <p className="case__lede">
@@ -46,25 +46,25 @@ export default function CaseOttDashboard() {
         <div className="wrap">
           <div className="case__cover">
             <svg className="cover-svg" viewBox="0 0 1200 540" preserveAspectRatio="none">
-              <rect width="1200" height="540" fill="#FCF2EF" />
-              <g stroke="#211A1E" strokeWidth="1.5" fill="#FFF">
+              <rect width="1200" height="540" fill="#0E1118" />
+              <g stroke="#E0B973" strokeWidth="1.5" fill="rgba(17,20,28,0.8)">
                 <rect x="80" y="80" width="1040" height="400" rx="8" />
               </g>
-              <line x1="80" y1="130" x2="1120" y2="130" stroke="#211A1E" strokeWidth="1.5" />
-              <g fill="#211A1E" fontFamily="PP Object Sans" fontWeight="500" fontSize="14" letterSpacing="0.12em">
+              <line x1="80" y1="130" x2="1120" y2="130" stroke="#E0B973" strokeWidth="1" opacity="0.4" />
+              <g fill="#ECEEF3" fontFamily="PP Object Sans" fontWeight="500" fontSize="14" letterSpacing="0.12em">
                 <text x="100" y="116">OTT INSIGHTS · CAMPAIGN ROLL-UP</text>
               </g>
               <g>
-                <rect x="100" y="160" width="220" height="140" fill="#211A1E" />
-                <rect x="100" y="320" width="220" height="140" fill="#211A1E" opacity="0.2" />
-                <rect x="340" y="160" width="220" height="300" fill="#F11A00" />
-                <rect x="580" y="160" width="220" height="140" fill="#211A1E" opacity="0.6" />
-                <rect x="580" y="320" width="220" height="140" fill="#211A1E" opacity="0.35" />
-                <rect x="820" y="160" width="280" height="140" fill="#211A1E" opacity="0.85" />
-                <rect x="820" y="320" width="280" height="140" fill="#211A1E" opacity="0.15" />
+                <rect x="100" y="160" width="220" height="140" fill="#ECEEF3" opacity="0.5" />
+                <rect x="100" y="320" width="220" height="140" fill="#ECEEF3" opacity="0.15" />
+                <rect x="340" y="160" width="220" height="300" fill="#E0B973" />
+                <rect x="580" y="160" width="220" height="140" fill="#ECEEF3" opacity="0.35" />
+                <rect x="580" y="320" width="220" height="140" fill="#ECEEF3" opacity="0.2" />
+                <rect x="820" y="160" width="280" height="140" fill="#ECEEF3" opacity="0.45" />
+                <rect x="820" y="320" width="280" height="140" fill="#ECEEF3" opacity="0.1" />
               </g>
-              <text x="370" y="320" fill="#FFF" fontFamily="PP Object Sans" fontWeight="500" fontSize="48" letterSpacing="-1">$5M</text>
-              <text x="370" y="350" fill="#FFF" fontFamily="PP Object Sans" fontWeight="400" fontSize="14" letterSpacing="0.12em">BUSINESS CONTRIBUTION</text>
+              <text x="370" y="320" fill="#0B0E14" fontFamily="PP Object Sans" fontWeight="500" fontSize="48" letterSpacing="-1">$5M</text>
+              <text x="370" y="350" fill="#0B0E14" fontFamily="PP Object Sans" fontWeight="400" fontSize="14" letterSpacing="0.12em">BUSINESS CONTRIBUTION</text>
             </svg>
           </div>
 
@@ -153,7 +153,7 @@ export default function CaseOttDashboard() {
               <div className="label">Back to</div>
               <Link href="/case/relevancy">A relevancy algorithm for PLP ranking →</Link>
             </div>
-            <Link href="/#work" className="case__back">All work</Link>
+            <Link href="/work" className="case__back">All work</Link>
           </div>
         </div>
       </main>
